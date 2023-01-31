@@ -19,9 +19,9 @@ if __name__ == '__main__':
         fichier = sys.argv[i]
         
         #Verification du format du fichier
-        verifPDF = fichier.split(".")
+        verifPDF = fichier.split(".")[-1] #Récupère seulement l'extension
         try:
-            if verifPDF[1] != "pdf":
+            if verifPDF != "pdf":
                 raise Exception
         except:
             print(fichier + " n'est pas au format pdf")
