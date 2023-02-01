@@ -1,0 +1,33 @@
+L
+0
+4
+Faire un générateur de fiche de suivi
+-Récupérer les donnée rentrée.\n-Réordonnée ces données sur un pdf exploitable par la suite.
+Aucune
+Documentation de la lib FPDF : http://www.fpdf.org/en/doc/index.php
+0
+
+/\/\/\/\/\/\/\/\/\/\/\
+EXEMPLE D'ENTREE TEXTE
+
+Version de python 3.x
+librairie nécessaire fpdf : "pip install fpdf"
+
+-Identifiant : (Première lettre de votre pseudo Github)
+-Numéro de la tâche réalisé : numéro écris sur le Github dans l'onglet projet
+-Durée de réalisation estimée en heure : Temps estimé passé sur cette taches
+-Objectif de la tâche : Phrase courte donnant le but attendu de la tâche (1 seule ligne)
+-*Courte explication : enumeration des actions mené pour réaliser cette tache (pas trop généraliser)
+-*Difficulté(s) (si rencontrée(s)) : Difficulté rencontrer durant cette tâches résolu ou non
+-*Source(s) : Ressources utilisé pour réalisé la tache telque des liens ou image (préférer des lien court)
+-Avancé de la tâche : selon ces critères mettre seulement le chiffre correspondant
+ 
+4) Rien : Tâche non faite.
+3) Non fonctionnelle : La tâche de ne fonctionne pas et/ou ne renvoie pas le résultat attendu.
+2) Partiellement fonctionnelle : Une petite partie de la tâche fonctionne mais le résultat attendu n'est pas atteint.
+1) Semi fonctionnelle : La tâche a été réalisé et renvoie un résultat légèrement différent et/ou avec des bugs.
+0) Fonctionnelle : La tâche a été faites et renvoie le résultat attendu
+
+*:\n pour le retour chariot
+
+Pour le lancer depuis un fichier texte faire : "python ./pyGenSuivi.py < <fichier.txt>"
