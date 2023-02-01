@@ -14,6 +14,7 @@ if __name__ == '__main__':
 
     if argc < 2:
         print("Usage: python3 " + sys.argv[0] + " <FICHIER.pdf ...>" )
+        exit(1)
     
     for i in range(1, argc):
         fichier = sys.argv[i]

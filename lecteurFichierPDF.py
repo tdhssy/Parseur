@@ -28,5 +28,3 @@ def readerPDF(fichier):
     page = lecteur.pages[0]
     text = page.extract_text()
     print(text)
-
-    print("Analyse terminée")
