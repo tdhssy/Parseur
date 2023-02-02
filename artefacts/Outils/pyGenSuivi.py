@@ -16,6 +16,9 @@ print("=========================================================================
 print("||Programme permettant la génération de fiche de suivi respectant une même template||")
 print("====================================================================================\n")
 
+#Chemin de sortie de fichier
+path = "./artefacts/Fiche_de_suivi/"
+
 #Liste des identifier prédéfinis
 idents = ['identifiant : ', 'Numéro de la tâche : ', 'Durée de réalisation estimée (heure(s)) : ', 'Objectif de la tâche : ', 'Courte explication : ', 'Difficulté(s) (si rencontrée(s)) : ', 'Source(s) : ']
 
@@ -118,6 +121,6 @@ pdf.set_text_color(0,0,0)
 pdf.multi_cell(180, 3, txt="*Rien : Tâche non faite.\n*Non fonctionnelle : La tâche de ne fonctionne pas et/ou ne renvoie pas le résultat attendu.\n*Partiellement fonctionnelle : Une petite partie de la tâche fonctionne mais le résultat attendu n'est pas atteint.\n*Semi fonctionnelle : La tâche a été réalisé et renvoie un résultat légèrement différent et/ou avec des bugs.\n*Fonctionnelle : La tâche a été faites et renvoie le résultat attendu.")
 
 #Enregistrement du PDF
-pdf.output(file_name)
+pdf.output(path+file_name)
 print("\n\n========================================================================")
-print("Pdf créé sous le nom de "+file_name+" dans le repertoire courant.\n")
+print("Pdf créé sous le nom de "+file_name+" dans le repertoire "+path+" .\n")
