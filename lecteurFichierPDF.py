@@ -11,7 +11,7 @@ def lecteurPDF(fichier):
     print("Analyse de " + fichier + " en cours ..." )
 
     #Récupération du nom du document
-    NOM_FICHIER = fichier.split('/')[-1]
+    NOM_FICHIER = extractionNomFichier(fichier)
     print(NOM_FICHIER)
     
     #Lecture du fichier pdf
@@ -32,3 +32,7 @@ def lecteurPDF(fichier):
     page = lecteur.pages[0]
     text = page.extract_text()
     #print(text)
+
+
+def extractionNomFichier(fichier):
+    return fichier.split('/')[-1]  #.split('.')[0] Pour retirer le '.pdf'
