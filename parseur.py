@@ -31,4 +31,5 @@ if __name__ == '__main__':
         #Analyse du fichier pdf
         readerPDF(fichier)
         
+    print("Fin")
     exit(0)
