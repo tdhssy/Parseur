@@ -5,6 +5,7 @@ from lecteurFichierPDF import readerPDF
 import sys
 
 """
+
 Fonction principale du Parseur.
 Permet la vérification du format des fichiers passé en
 arguments et lance l'analyse si ceux-ci sont valide.
