@@ -10,7 +10,9 @@ et la récupération des informations de celui-ci.
 def lecteurPDF(fichier):
     print("Analyse de " + fichier + " en cours ..." )
 
-
+    #Récupération du nom du document
+    NOM_FICHIER = fichier.split('/')[-1]
+    print(NOM_FICHIER)
     
     #Lecture du fichier pdf
     try:
