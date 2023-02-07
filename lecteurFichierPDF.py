@@ -7,8 +7,10 @@ from PyPDF2 import PdfReader
 Fonction permettant la lecture du document PDF
 et la récupération des informations de celui-ci.
 """
-def readerPDF(fichier):
+def lecteurPDF(fichier):
     print("Analyse de " + fichier + " en cours ..." )
+
+
     
     #Lecture du fichier pdf
     try:
@@ -27,4 +29,4 @@ def readerPDF(fichier):
     nb_page = len(lecteur.pages)
     page = lecteur.pages[0]
     text = page.extract_text()
-    print(text)
+    #print(text)

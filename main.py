@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from lecteurFichierPDF import readerPDF
+from lecteurFichierPDF import lecteurPDF
 import sys
 
 """
@@ -29,6 +29,7 @@ if __name__ == '__main__':
             continue
 
         #Analyse du fichier pdf
-        readerPDF(fichier)
+        lecteurPDF(fichier)
         
+    print("Fin")
     exit(0)
