@@ -12,7 +12,6 @@ def lecteurPDF(fichier):
 
     #Récupération du nom du document
     NOM_FICHIER = extractionNomFichier(fichier)
-    print(NOM_FICHIER)
     
     #Lecture du fichier pdf
     try:
@@ -22,17 +21,24 @@ def lecteurPDF(fichier):
         return 
     
     #Récupération des informations du fichier
-    info = lecteur.metadata
-    titre = info.title
-    auteurs = info.author
+    INFO = lecteur.metadata
+    TITRE = recuperationTitre(INFO)
+    AUTEURS = recuperationAuteurs(INFO)
 
-    #Récupération du texte
-    #TODO Distinguer les différents paragraphes.
-    nb_page = len(lecteur.pages)
-    page = lecteur.pages[0]
-    text = page.extract_text()
-    #print(text)
+    #rendu = ["Titre :\n\t" + TITRE + 
+    #        " test"]
+    #print(rendu[0])
 
 
 def extractionNomFichier(fichier):
     return fichier.split('/')[-1]  #.split('.')[0] Pour retirer le '.pdf'
+
+def recuperationTitre(metadata):
+    titre = metadata.title
+    #TODO metadata.title peut renvoyer none. A gérer dans ce cas
+    return titre
+
+def recuperationAuteurs(metadata):
+    auteurs = metadata.author
+    #TODO metadata.author peut renvoyer none. A gérer dans ce cas
+    return auteurs
