@@ -23,6 +23,7 @@ def lecteurPDF(fichier):
     #Récupération des informations du fichier
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
+    print(TITRE)
     AUTEURS = recuperationAuteurs(INFO)
     #rendu = ["Titre :\n\t" + TITRE + 
     #        " test"]
@@ -35,14 +36,17 @@ def extractionNomFichier(fichier):
 def recuperationTitre(lecteur):
     info=lecteur.metadata
     titre = info.title
+
+    def taille_entête(text,cm,tm,fontDict,fontSize): #on s'interesse à la taille de la police fontsize
+            y=tm[5] #tm pour text matrice
+            if fontSize > 14 and y>550: #si supérieur à taille basique alors c'est le titre et si assez haut dans le document
+                titretmp_ligne.append(text) # on ajoute dans la variable temporaire la ligne en question
+
     if(titre==None):
         page=lecteur.pages[0] #on prends la 1ère page
         titretmp_ligne = [] #on crée tableau vide
         titre= "" # on transforme titre de None a string
-        def taille_entête(text,cm,tm,fontDict,fontSize): #on s'interesse à la taille de la police fontsize
-            y=tm[5] #tm pour text matrice
-            if fontSize > 14 and y>600: #si supérieur à taille basique alors c'est le titre et si assez haut dans le document
-                titretmp_ligne.append(text) # on ajoute dans la variable temporaire la ligne en question
+        
 
         page.extract_text(visitor_text=taille_entête) # appelle de la définition taille_entete
         titretmp_ligne= "".join(titretmp_ligne).split("\n") # on regroupe toutes les lignes et on les sépare en fonction des retour à la ligne
@@ -56,6 +60,12 @@ def recuperationTitre(lecteur):
                 titre += titretmp_ligne[i]+" "
             else:
                 titre += titretmp_ligne[i]
+        
+    if titre.startswith("/"): #Reparation de fortune pas opti
+        page=lecteur.pages[0]
+        tmptitre= page.extract_text(visitor_text=taille_entête)
+        tmptitre= tmptitre.split("\n")[0]
+        titre = tmptitre
     return titre
 
 def recuperationAuteurs(metadata):
