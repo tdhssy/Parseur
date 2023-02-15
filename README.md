@@ -23,7 +23,6 @@ Installez les dépendance
 
 ```bash
   pip install pypdf2
-  pip install re
 ```
 
 Lancez le parseur
