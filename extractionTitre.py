@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from PyPDF2 import PdfReader
 import re
 
 """
 Fonction permettant la récupération du titre d'un fichier pdf
-    -lecteur : objet obtenu grâce à la méthode PdfReader(x) 
-                de la bibliothèque PyPDF2
-    -return : titre du document
+    -In : PdfReader
+    -Out : titre du document en str
 """
-def recuperationTitre(lecteur):
+def recuperationTitre(lecteur: PdfReader) -> str:
     info=lecteur.metadata
     titre = info.title
 

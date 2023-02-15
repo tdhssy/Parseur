@@ -3,8 +3,8 @@
 
 """
 Fonction permettant la récupération du nom d'un ficher
-    -fichier : chemin d'accès au fichier
-    -return : nom du fichier
+    -In : chemin d'accès au fichier
+    -Out : nom du fichier en str
 """
-def extractionNomFichier(fichier):
+def extractionNomFichier(fichier: str) -> str:
     return fichier.split('/')[-1]  #.split('.')[0] Pour retirer le '.pdf'   
