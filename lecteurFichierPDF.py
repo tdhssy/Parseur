@@ -23,11 +23,13 @@ def lecteurPDF(fichier):
     #Récupération des informations du fichier
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
-    print("Titre : "+TITRE+"\n")
+    #print("Titre : "+TITRE+"\n")
     AUTEURS = recuperationAuteurs(INFO)
-    #rendu = ["Titre :\n\t" + TITRE + 
-    #        " test"]
-    #print(rendu[0])
+    rendu = ["\nNom du fichier :\n\t" + NOM_FICHIER + 
+            "\nTitre :\n\t" + TITRE 
+            ]
+    print(rendu[0])
+    print("----------------------------------------------------------------\n")
 
 
 def extractionNomFichier(fichier):
@@ -36,6 +38,8 @@ def extractionNomFichier(fichier):
 def recuperationTitre(lecteur):
     info=lecteur.metadata
     titre = info.title
+
+    #print("Meta info : "+str(info))
 
     def taille_entête(text,cm,tm,fontDict,fontSize): #on s'interesse à la taille de la police fontsize
         y=tm[5] #tm pour text matrice
@@ -63,7 +67,7 @@ def recuperationTitre(lecteur):
             else:
                 titre += titretmp_ligne[i]
 
-    if titre.startswith("/"): #Reparation de fortune pas opti
+    if (not titre[0].isupper()): #Cas ou la métadonné ne correspond pas a un titre
         
         page=lecteur.pages[0]
         tmptitre= page.extract_text(visitor_text=taille_entête)
