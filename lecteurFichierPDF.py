@@ -6,6 +6,7 @@ from PyPDF2 import PdfReader
 from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
+from extractionAbstract import recuperationAbstract
 
 """
 Fonction permettant la lecture du document PDF
@@ -29,8 +30,10 @@ def lecteurPDF(fichier):
     TITRE = recuperationTitre(lecteur)
     #print("Titre : "+TITRE+"\n")
     AUTEURS = recuperationAuteurs(INFO)
+    ABSTRACT = recuperationAbstract(lecteur)
     rendu = ["\nNom du fichier :\n\t" + NOM_FICHIER + 
-            "\nTitre :\n\t" + TITRE 
+            "\nTitre :\n\t" + TITRE +
+            "\nAbstract : \n" + ABSTRACT
             ]
     print(rendu[0])
     print("----------------------------------------------------------------\n") 
