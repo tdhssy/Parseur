@@ -30,12 +30,12 @@ def lecteurPDF(fichier):
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
     #print("Titre : "+TITRE+"\n")
-    AUTEURS = recuperationAuteurs(INFO)
+    AUTEURS = recuperationAuteurs(lecteur)
     ABSTRACT = recuperationAbstract(lecteur)
     rendu = ["\nNom du fichier :\n\t" + NOM_FICHIER + 
             "\nTitre :\n\t" + TITRE +
             "\nAbstract : \n\t" + ABSTRACT
             ]
     CreatFich(rendu[0], "./Résultat/" + NOM_FICHIER[:-3] + "txt")
-    print(rendu[0])
+    #print(rendu[0])
     print("----------------------------------------------------------------\n") 
