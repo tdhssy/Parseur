@@ -7,6 +7,7 @@ from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
 from extractionAbstract import recuperationAbstract
+from creationFichier import CreatFich
 
 """
 Fonction permettant la lecture du document PDF
@@ -33,7 +34,8 @@ def lecteurPDF(fichier):
     ABSTRACT = recuperationAbstract(lecteur)
     rendu = ["\nNom du fichier :\n\t" + NOM_FICHIER + 
             "\nTitre :\n\t" + TITRE +
-            "\nAbstract : \n" + ABSTRACT
+            "\nAbstract : \n\t" + ABSTRACT
             ]
+    CreatFich(rendu[0], "./Résultat/" + NOM_FICHIER[:-3] + "txt")
     print(rendu[0])
     print("----------------------------------------------------------------\n") 

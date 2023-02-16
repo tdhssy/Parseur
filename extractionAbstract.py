@@ -17,5 +17,5 @@ def recuperationAbstract(lecteur: PdfReader) -> str:
         abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)i[\s]?ntroduction', page.extract_text())[0].split('\n')
         abstract.pop(-1) #On enlève la dernière ligne
     except:
-        abstract="Aucun Abstract."
-    return "".join(abstract)
+        abstract=["Aucun Abstract."]
+    return "\n".join(abstract)
