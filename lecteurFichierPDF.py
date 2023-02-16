@@ -34,6 +34,7 @@ def lecteurPDF(fichier):
     ABSTRACT = recuperationAbstract(lecteur)
     rendu = ["\nNom du fichier :\n\t" + NOM_FICHIER + 
             "\nTitre :\n\t" + TITRE +
+            "\nAuteurs :\n\t" + AUTEURS +
             "\nAbstract : \n\t" + ABSTRACT
             ]
     CreatFich(rendu[0], "./Résultat/" + NOM_FICHIER[:-3] + "txt")
