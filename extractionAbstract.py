@@ -13,9 +13,12 @@ en utilisant une expression régulière
 """
 def recuperationAbstract(lecteur: PdfReader) -> str:
     page=lecteur.pages[0] #on prends la 1ère page
+    res = ""
     try:
         abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)i[\s]?ntroduction', page.extract_text())[0].split('\n')
+        for ligne in abstract:
+            res += ligne + "\n"
         abstract.pop(-1) #On enlève la dernière ligne
     except:
-        abstract=["Aucun Abstract."]
-    return "\n".join(abstract)
+        res = "Aucun Abstract."
+    return res
