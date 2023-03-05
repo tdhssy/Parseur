@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from lecteurFichierPDF import lecteurPDF
+from txt_Writer import lecteurPDF as txt_writer
+from xml_Writer import lecteurPDF as xml_writer
 import sys
 
 """
@@ -30,7 +31,8 @@ if __name__ == '__main__':
             continue
 
         #Analyse du fichier pdf
-        lecteurPDF(fichier)
+        txt_writer(fichier) #VERSION TXT
+        xml_writer(fichier) #VERSION XML
         
-    print("Fin")
+    print("Fin de la génération")
     exit(0)

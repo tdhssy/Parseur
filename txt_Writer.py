@@ -15,7 +15,7 @@ Fonction permettant la lecture du document PDF
 et la récupération des informations de celui-ci.
 """
 def lecteurPDF(fichier):
-    print("Analyse de " + fichier + " en cours ..." )
+    print("Conversion en TXT du fichier [" + fichier + "] en cours ..." )
 
     #Récupération du nom du document
     NOM_FICHIER = extractionNomFichier(fichier)
@@ -25,21 +25,24 @@ def lecteurPDF(fichier):
         lecteur = PdfReader(fichier)
     except:
         print(fichier + " introuvable")
-        return 
+        return 1
     
     #Récupération des informations du fichier
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
-    #print("Titre : "+TITRE+"\n")
     AUTEURS = recuperationAuteurs(lecteur)
     ABSTRACT = recuperationAbstract(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
-    rendu = ["\nNom du fichier :\n\t" + NOM_FICHIER + 
+
+    #Formatage des données 
+    rendu = [
+            "\nNom du fichier :\n\t" + NOM_FICHIER + 
             "\nTitre :\n\t" + TITRE +
             "\nAuteurs :\n\t" + AUTEURS +
             "\nAbstract : \n\t" + ABSTRACT +
             "\nBibliographie : \n\t" + BIBLIOGRAPHIE
             ]
-    CreatFich(rendu[0], "./Résultat/" + NOM_FICHIER[:-3] + "txt")
+
+    CreatFich(rendu[0], "./Resultat/" + NOM_FICHIER[:-3] + "txt")
     #print(rendu[0])
     print("----------------------------------------------------------------\n") 
