@@ -55,5 +55,5 @@ def lecteurPDF(fichier):
                 "</article>"
                 )
     
-    CreatFich("".join(rendu), "./Resultat/" + NOM_FICHIER[:-3] + "xml")
+    CreatFich("".join(rendu), "./resultat/" + NOM_FICHIER[:-3] + "xml")
     print("----------------------------------------------------------------\n") 

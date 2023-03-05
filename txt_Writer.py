@@ -43,6 +43,6 @@ def lecteurPDF(fichier):
             "\nBibliographie : \n\t" + BIBLIOGRAPHIE
             ]
 
-    CreatFich(rendu[0], "./Resultat/" + NOM_FICHIER[:-3] + "txt")
+    CreatFich(rendu[0], "./resultat/" + NOM_FICHIER[:-3] + "txt")
     #print(rendu[0])
     print("----------------------------------------------------------------\n") 
