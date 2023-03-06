@@ -19,6 +19,6 @@ def recuperationAbstract(lecteur: PdfReader) -> str:
         for ligne in abstract:
             res += ligne + "\n"
     except Exception as e:
-        #print(e)
+        #print(e) 
         res = "Aucun Abstract."
     return res
