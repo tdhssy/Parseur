@@ -13,7 +13,7 @@ en utilisant une expression régulière
 """
 
 def recuperationBiblio(lecteur: PdfReader) -> str:
-    res = []
+    res = ""
     nb_pages = len(lecteur.pages)
     trouver = False
     cpt = 0
@@ -23,14 +23,16 @@ def recuperationBiblio(lecteur: PdfReader) -> str:
         page = lecteur.pages[cpt]
 
         try:
-            biblio = re.findall(r'(?i)[\n]reference[s]?[\s]*[\n][\s\S]*',page.extract_text())[0].split('\n')
+            biblio = re.findall(r'(?i)[\n]reference[s]?[\s]*[\n][\s\S]*',
+                                ("\n" + page.extract_text()))[0].split('\n') #Ajout de \n au cas ou References est en début de page
+            biblio.pop(1)  #Pour enlever le mot clé "References"
+            biblio.pop(-1) #Pour enlever le numéro de la page
         except:
             biblio = []
 
         if biblio != []:
             for ligne in biblio:
                 res += ligne + "\n"
-            res.pop(-1) #Pour enlever le numéro de la page
             trouver = True
         cpt += 1
     
@@ -40,7 +42,6 @@ def recuperationBiblio(lecteur: PdfReader) -> str:
         page = lecteur.pages[cpt]
         for ligne in page.extract_text()[0].split('\n'):
             res += ligne + "\n"
-        res.pop(-1) #Pour enlever le numéro de la page
         cpt += 1
     
-    return "".join(res)
+    return res
