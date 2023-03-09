@@ -27,8 +27,8 @@ def lecteurPDF(fichier):
     #Récupération des informations du fichier
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
-    AUTEURS = ["Pierre dupuis","Jack Dupont"]#recuperationAuteurs(lecteur) #DOIT RENVOYER UNE LISTE DE MAIL
-    MAILS = ["ok@gmail.com",""]
+    AUTEURS = recuperationAuteurs(lecteur) #["Pierre dupuis","Jack Dupont"] #DOIT RENVOYER UNE LISTE DE MAIL
+    MAILS = ["ok@gmail.com","",""]
     ABSTRACT = recuperationAbstract(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 

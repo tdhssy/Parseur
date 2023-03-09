@@ -25,6 +25,9 @@ def recuperationAuteurs(lecteur: PdfReader) -> str:
             index_fin = texte.lower().find("introduction") #Si l'abstract n'existe pas on estime que l'auteur est entre le titre et l'intro
         resultat = texte[index_debut:index_fin]
         
+    
+    sep_resultat = resultat.split(" ; ")
+    print(sep_resultat)
     #print("Auteurs :\n\t"+resultat)
-
-    return resultat
+    return sep_resultat
+    #return resultat
