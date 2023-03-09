@@ -15,7 +15,7 @@ if __name__ == '__main__':
     argc = len(sys.argv)
 
     if argc < 3:
-        print("Usage: python3 " + sys.argv[0] + " <FICHIER.pdf ...>" )
+        print("Usage: python3 " + sys.argv[0] + " -t|-x|-tx <FICHIER.pdf ...>" )
         exit(1)
 
     for i in range(2, argc):
