@@ -13,12 +13,9 @@ en utilisant une expression régulière
 """
 def recuperationAbstract(lecteur: PdfReader) -> str:
     page=lecteur.pages[0] #on prends la 1ère page
-    res = ""
     try:
-        abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', page.extract_text())[0][0].split("\n")
-        for ligne in abstract:
-            res += ligne + "\n"
+        abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', page.extract_text())[0][0]
     except Exception as e:
         #print(e) 
-        res = "Aucun Abstract."
-    return res
+        abstract = "Aucun Abstract."
+    return abstract
