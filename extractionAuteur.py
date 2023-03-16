@@ -10,6 +10,13 @@ import difflib
 Fonction permettant l'extraction du ou des auteurs d'un article pdf
 TODO modification à venir
 """
+
+def capitalise(chaine):
+    mots = chaine.split()  # séparer les mots de la chaîne
+    mots_capitalises = [mot.capitalize() for mot in mots]  # mettre en majuscule la première lettre de chaque mot
+    return " ".join(mots_capitalises)  # recombiner les mots en une chaîne avec un espace entre chaque mot
+
+
 def recuperationAuteurs(lecteur: PdfReader) -> str:
 
     page=lecteur.pages[0] #on prends la 1ère page
@@ -74,25 +81,67 @@ def recuperationAuteurs(lecteur: PdfReader) -> str:
         for nom in listNom:
             emails.append(nom + matches.group(2))
     
-    #print("Emails extraits :\n", emails)
+   
     
     #---------------------- Partie pour retrouvé les noms --------------------#
 
-    met = lecteur.metadata.author # On obtient les meta datas puis on cherche les autheur
-    if met != None:
-        authors = met.split(" ; ")  # on les imbrique correctement dans un tableau
-        #print("autheur :\n", authors)
-    
-        if len(authors)>0 and len(emails)>0:
-            noms_associés = {}
+    nom_email = []
+    if len(emails)>0:
+        #print("Emails extraits :\n", emails)
+        
+        for adresse in emails:
+            # Rechercher le nom associé à l'adresse e-mail en supposant que le nom est juste avant l'adresse e-mail
+            nom_email.append( capitalise(adresse.split('@')[0].replace('.', ' ').replace('_', ' ')))
+            
 
+            #texte = texte.replace(adresse, "")
+
+        #print("mail :"+str(emails))
+        #print("Nom mail :"+str(nom_email))
+
+    res = [[elem1, elem2] for elem1, elem2 in zip(nom_email, emails)]
+    #print(str(res))
+
+    #texte = texte.replace("\n"," ").split(" ")
+
+    """
+        for nom in nom_email :
+
+            # Chercher la correspondance la plus proche entre le nom dans l'adresse e-mail et les noms dans la liste des auteurs
+            correspondance_la_plus_proche = difflib.get_close_matches(nom, texte, n=1, cutoff=0)
+            print("compare "+nom)
+
+            if correspondance_la_plus_proche :
+                print("correspondance : " + str(correspondance_la_plus_proche))
+    """
+    
+
+
+
+
+    #V1
+    """
+
+    met = lecteur.metadata.author # On obtient les meta datas puis on cherche les autheur
+    noms_associés = {}
+    author = ""
+    if True:
+        #authors = met.split(";")  # on les imbrique correctement dans un tableau
+        #print("autheur :\n", authors)
+        print("adresse :"+str(emails))
+        if len(emails)>0:
+            
+            
             for adresse in emails:# Parcourir les adresses e-mail trouvées
 
+                
                 # Rechercher le nom associé à l'adresse e-mail en supposant que le nom est juste avant l'adresse e-mail
                 nom_email = adresse.split('@')[0].replace('.', ' ').replace('_', ' ')
 
+                print("Nom mail :"+str(nom_email))
+
                 # Chercher la correspondance la plus proche entre le nom dans l'adresse e-mail et les noms dans la liste des auteurs
-                correspondance_la_plus_proche = difflib.get_close_matches(nom_email, authors, n=1)
+                correspondance_la_plus_proche = difflib.get_close_matches(nom_email, authors, n=1, cutoff=0.2)
 
                 # Si une correspondance a été trouvée, ajouter l'association nom-adresse e-mail au dictionnaire
                 if correspondance_la_plus_proche:
@@ -100,5 +149,8 @@ def recuperationAuteurs(lecteur: PdfReader) -> str:
 
             # Afficher le dictionnaire des noms associés aux adresses e-mail
             #print("dictio: \n", noms_associés)
+    """
+    return res #noms_associés , emails, authors
 
-    return emails, authors, noms_associés
+
+    

@@ -30,7 +30,7 @@ def lecteurPDF(fichier):
     #Récupération des informations du fichier
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
-    AUTEURS = recuperationAuteurs(lecteur)
+    AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}" for auteur_mail in recuperationAuteurs(lecteur)])
     ABSTRACT = recuperationAbstract(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 
@@ -38,9 +38,9 @@ def lecteurPDF(fichier):
     rendu = [
             "\nNom du fichier :\n\t" + NOM_FICHIER + 
             "\nTitre :\n\t" + TITRE +
-            "\nAuteurs :\n\t" + AUTEURS +
-            "\nAbstract : \n\t" + ABSTRACT +
-            "\nBibliographie : \n\t" + BIBLIOGRAPHIE
+            "\nAuteurs :\n\t" + AUTEURS.replace("\n", "\n\t") +
+            "\nAbstract : \n\t" + ABSTRACT.replace("\n", "\n\t") +
+            "\nBibliographie : \n\t" + BIBLIOGRAPHIE.replace("\n", "\n\t")
             ]
 
     CreatFich(rendu[0], "./resultat/" + NOM_FICHIER[:-3] + "txt")

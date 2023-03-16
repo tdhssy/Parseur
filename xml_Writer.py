@@ -32,6 +32,8 @@ def lecteurPDF(fichier):
     ABSTRACT = recuperationAbstract(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 
+    #print(str(AUTEURS))
+
     rendu = [
             "<article>\n"+
             "\t<preambule>" + NOM_FICHIER + "</preambule>\n" +
@@ -43,8 +45,8 @@ def lecteurPDF(fichier):
     for i in range(len(AUTEURS)):
         rendu.append(
                     "\t\t<auteur>\n"+
-                    "\t\t\t<name>"+AUTEURS[i]+"</name>\n"+
-                    "\t\t\t<mail>"+MAILS[i]+"</mail>\n"+
+                    "\t\t\t<name>"+AUTEURS[i][0]+"</name>\n"+
+                    "\t\t\t<mail>"+AUTEURS[i][1]+"</mail>\n"+
                     "\t\t</auteur>\n"
                     )
 
