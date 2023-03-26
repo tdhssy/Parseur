@@ -8,7 +8,9 @@ from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
 from extractionAbstract import recuperationAbstract
 from creationFichier import CreatFich
+from extractionDiscussion import recuperationDiscussion
 from extractionBiblio import recuperationBiblio
+
 
 """
 Fonction permettant la lecture du document PDF
@@ -32,6 +34,7 @@ def lecteurPDF(fichier):
     TITRE = recuperationTitre(lecteur)
     AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}" for auteur_mail in recuperationAuteurs(lecteur)])
     ABSTRACT = recuperationAbstract(lecteur)
+    DISCUSSION = recuperationDiscussion(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 
     #Formatage des données 
@@ -40,6 +43,7 @@ def lecteurPDF(fichier):
             "\nTitre :\n\t" + TITRE +
             "\nAuteurs :\n\t" + AUTEURS.replace("\n", "\n\t") +
             "\nAbstract : \n\t" + ABSTRACT.replace("\n", "\n\t") +
+            "\nDiscussion : \n\t" + DISCUSSION.replace("\n", "\n\t") +
             "\nBibliographie : \n\t" + BIBLIOGRAPHIE.replace("\n", "\n\t")
             ]
 

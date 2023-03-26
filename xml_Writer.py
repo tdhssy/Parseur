@@ -7,6 +7,7 @@ from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
 from extractionAbstract import recuperationAbstract
+from extractionDiscussion import recuperationDiscussion
 from extractionBiblio import recuperationBiblio
 from creationFichier import CreatFich
 
@@ -28,8 +29,8 @@ def lecteurPDF(fichier):
     INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
     AUTEURS = recuperationAuteurs(lecteur) #["Pierre dupuis","Jack Dupont"] #DOIT RENVOYER UNE LISTE DE MAIL
-    MAILS = ["ok@gmail.com","",""]
     ABSTRACT = recuperationAbstract(lecteur)
+    DISCUSSION = recuperationDiscussion(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 
     #print(str(AUTEURS))
@@ -53,6 +54,7 @@ def lecteurPDF(fichier):
     rendu.append(
                 "\t</auteurs>\n"+
                 "\t<abstract>"+ ABSTRACT.replace("\n", "\\n")+"</abstract>\n"+
+                "\t<discussion>"+ DISCUSSION.replace("\n", "\\n")+"</discussion>\n"+
                 "\t<biblio>"+ BIBLIOGRAPHIE.replace("\n", "\\n") + "</bilio>\n"+
                 "</article>"
                 )
