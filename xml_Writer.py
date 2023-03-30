@@ -10,6 +10,7 @@ from extractionAbstract import recuperationAbstract
 from extractionDiscussion import recuperationDiscussion
 from extractionBiblio import recuperationBiblio
 from creationFichier import CreatFich
+from extractionConclusion import recuperationConclusion
 
 def lecteurPDF(fichier):
     print("Conversion en XML du fichier [" + fichier + "] en cours ..." )
@@ -31,6 +32,7 @@ def lecteurPDF(fichier):
     AUTEURS = recuperationAuteurs(lecteur) #["Pierre dupuis","Jack Dupont"] #DOIT RENVOYER UNE LISTE DE MAIL
     ABSTRACT = recuperationAbstract(lecteur)
     DISCUSSION = recuperationDiscussion(lecteur)
+    CONCLUSION = recuperationConclusion(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 
     #print(str(AUTEURS))
@@ -55,6 +57,7 @@ def lecteurPDF(fichier):
                 "\t</auteurs>\n"+
                 "\t<abstract>"+ ABSTRACT.replace("\n", "\\n")+"</abstract>\n"+
                 "\t<discussion>"+ DISCUSSION.replace("\n", "\\n")+"</discussion>\n"+
+                "\t<conclusion>"+ CONCLUSION.replace("\n", "\\n")+"</conclusion>\n"+
                 "\t<biblio>"+ BIBLIOGRAPHIE.replace("\n", "\\n") + "</bilio>\n"+
                 "</article>"
                 )
