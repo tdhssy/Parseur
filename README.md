@@ -32,23 +32,25 @@ Allez au repertoire du parseur
 
 Lancez le parseur
 
+Mettre les fichiers pdf dans le dossier pdf_apprentissage
 ```bash
-  python3 parseur.py <Option> <Article1.pdf> [<Article2.pdf> ...]
+  python3 parseur.py <Option> 
 ```
+Selectionner le pdf a convertir ou * si tout les pdf
 
 
 ## Exemple
 
-Pour lancement d'une conversion vers un format TXT
+Pour lancer une conversion vers un format TXT
 
 ```bash
-  python3 parseur.py -t ./pdf_apprentissage/Boudin-Torres-2006.pdf
+  python3 parseur.py -t 
 ```
 
-Pour lancement d'une conversion vers un format XML
+Pour lancer une conversion vers un format XML
 
 ```bash
-  python3 parseur.py -x ./pdf_apprentissage/Boudin-Torres-2006.pdf
+  python3 parseur.py -x 
 ```
 
 ## Auteurs
