@@ -33,7 +33,7 @@ def convert(selectfic):
 
 
 def saisie(L):
-    inp = input("saisir un chiffre dans la liste ou * : ")
+    inp = input("\nsaisir un chiffre dans la liste ou * : ")
     if inp == "*":
         for i in  L :
             convert(i)
