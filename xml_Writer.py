@@ -2,14 +2,16 @@
 # -- coding: utf-8 --
 
 from PyPDF2 import PdfReader
+from creationFichier import CreatFich
 
 from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
 from extractionAbstract import recuperationAbstract
+from extractionCorps import recuperationCorps
 from extractionDiscussion import recuperationDiscussion
 from extractionBiblio import recuperationBiblio
-from creationFichier import CreatFich
+
 
 def lecteurPDF(fichier):
     print("Conversion en XML du fichier [" + fichier + "] en cours ..." )
@@ -30,6 +32,7 @@ def lecteurPDF(fichier):
     TITRE = recuperationTitre(lecteur)
     AUTEURS = recuperationAuteurs(lecteur) #["Pierre dupuis","Jack Dupont"] #DOIT RENVOYER UNE LISTE DE MAIL
     ABSTRACT = recuperationAbstract(lecteur)
+    CORPS = recuperationCorps(lecteur)
     DISCUSSION = recuperationDiscussion(lecteur)
     BIBLIOGRAPHIE = recuperationBiblio(lecteur)
 
@@ -54,6 +57,7 @@ def lecteurPDF(fichier):
     rendu.append(
                 "\t</auteurs>\n"+
                 "\t<abstract>"+ ABSTRACT.replace("\n", "\\n")+"</abstract>\n"+
+                "\t<corps>"+ CORPS.replace("\n", "\\n")+"</corps>\n"+
                 "\t<discussion>"+ DISCUSSION.replace("\n", "\\n")+"</discussion>\n"+
                 "\t<biblio>"+ BIBLIOGRAPHIE.replace("\n", "\\n") + "</bilio>\n"+
                 "</article>"

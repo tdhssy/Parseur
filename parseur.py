@@ -22,18 +22,18 @@ def convert(selectfic):
     elif option =="-x":  
         xml_writer(chemin + selectfic) #VERSION XML
         #print("-x " + selectfic)
-    elif option =="-tx " or option == "-xt":  
+    elif option =="-tx" or option == "-xt":  
         xml_writer(chemin + selectfic) #VERSION XML
         txt_writer(chemin + selectfic) #VERSION TXT
         #print("-tx " + selectfic)
     else :
-        print("usage: [type] [nomFichier]\n")
-        print(" type:       -t -> sortie txt\n      -x -> sortie xml\n")
-        print(" Rappel: Vous pouvez mettre plusieurs fichiers a la suite")
+        print("\nUsage: python3 "+sys.argv[0]+" [type]\n")
+        print("type:\t-t -> sortie texte\n\t-x -> sortie xml\n\t-xt | -tx -> sortie xml et texte")
+
 
 
 def saisie(L):
-    inp = input("\nsaisir un chiffre dans la liste ou * : ")
+    inp = input("\nSaisir un chiffre dans la liste ou * : ")
     if inp == "*":
         for i in  L :
             convert(i)
