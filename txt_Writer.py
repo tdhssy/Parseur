@@ -8,6 +8,7 @@ from creationFichier import CreatFich
 from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
+from extractionIntro import recuparationIntro
 from extractionAbstract import recuperationAbstract
 from extractionCorps import recuperationCorps
 from extractionDiscussion import recuperationDiscussion
