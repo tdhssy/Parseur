@@ -4,7 +4,6 @@
 from PyPDF2 import PdfReader
 from extractionTitre import recuperationTitre
 import re
-import difflib
 
 """
 Fonction permettant l'extraction du ou des auteurs d'un article pdf
@@ -99,7 +98,39 @@ def recuperationAuteurs(lecteur: PdfReader) -> str:
         #print("mail :"+str(emails))
         #print("Nom mail :"+str(nom_email))
 
-    res = [[elem1, elem2] for elem1, elem2 in zip(nom_email, emails)]
+    #---------------------- Partie pour retrouvé les affiliations --------------------#
+    #On part du principe que les affiliations sont entre l'email et le nom d'un auteur
+    #On cherche la ligne contenant le nom puis celle contenant l'email et on prend ce qu'il y a au milieu
+    affiliations = []
+    lignes = texte.split("\n")
+    if len(emails)>0:
+        for nom, adresse in zip(nom_email, emails):
+            debut = nom
+            fin = adresse.split("@")[1]
+            index_debut = -1
+            index_fin = -1
+            debuTrouve = False
+            finTrouve = False
+            cpt = 0
+            for ligne in lignes:
+                cpt += 1
+                if (ligne.lower().find(debut.lower()) != -1) and not debuTrouve:
+                    index_debut = cpt
+                    debuTrouve = True
+                elif (ligne.lower().find(fin.lower()) != -1) and debuTrouve:
+                    index_fin = cpt -1
+                    finTrouve = True
+                if finTrouve and debuTrouve:
+                    break
+            if index_debut != -1 and index_fin != -1:
+                if (index_fin-index_debut) > len(lignes)/2: #L'email se trouve en fin de page
+                    affiliations.append("".join(lignes[index_debut:index_debut+1])) #On suppose que c'est la ligne après le nom
+                affiliations.append(" ".join((lignes[index_debut:index_fin])))
+            else:
+                affiliations.append("Aucune affiliation trouvée.")
+            
+
+    res = [[elem1, elem2, elem3] for elem1, elem2, elem3 in zip(nom_email, emails, affiliations)]
     #print(str(res))
 
     #texte = texte.replace("\n"," ").split(" ")
