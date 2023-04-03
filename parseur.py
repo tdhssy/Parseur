@@ -34,13 +34,16 @@ def convert(selectfic):
 
 def saisie(L):
     inp = input("\nSaisir un chiffre dans la liste ou * : ")
-    if inp == "*":
-        for i in  L :
-            convert(i)
-    elif int(inp) >0 and int(inp)<len(L)+1 : 
-        selectfic = L[int(inp)-1]
-        convert(selectfic)
-    else:
+    try:
+        if inp == "*":
+            for i in  L :
+                convert(i)
+        elif int(inp) >0 and int(inp)<len(L)+1 : 
+            selectfic = L[int(inp)-1]
+            convert(selectfic)
+        else:
+            raise Exception
+    except:
         print("Erreur veuillez choisir parmis les propositions ")
         saisie(L)
 
@@ -49,7 +52,7 @@ if __name__ == '__main__':
 
 
     if argc < 2:
-        print("Usage: python3 " + sys.argv[0] + " -t|-x|-tx <FICHIER.pdf ...>" )
+        print("Usage: python3 " + sys.argv[0] + " -t|-x|-tx " )
         exit(1)
 
     L = []
