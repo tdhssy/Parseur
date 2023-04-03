@@ -38,6 +38,7 @@ def lecteurPDF(fichier):
     TITRE = recuperationTitre(lecteur)
     AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}" for auteur_mail in recuperationAuteurs(lecteur)])
     ABSTRACT = recuperationAbstract(lecteur)
+    INTRODUCTION = recuparationIntro(lecteur)
     CORPS = recuperationCorps(lecteur)
     DISCUSSION = recuperationDiscussion(lecteur)
     CONCLUSION = recuperationConclusion(lecteur)
@@ -50,6 +51,7 @@ def lecteurPDF(fichier):
             "\nTitre :\n\t" + TITRE +
             "\nAuteurs :\n\t" + AUTEURS.replace("\n", "\n\t") +
             "\nAbstract : \n\t" + ABSTRACT.replace("\n", "\n\t") +
+            "\nIntroduction : \n\t" + INTRODUCTION.replace("\n", "\n\t") +
             "\nCorps : \n\t" + CORPS.replace("\n", "\n\t") +
             "\nDiscussion : \n\t" + DISCUSSION.replace("\n", "\n\t") +
             "\nConclusion : \n\t" + CONCLUSION.replace("\n", "\n\t") +
