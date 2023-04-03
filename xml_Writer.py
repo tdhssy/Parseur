@@ -1,46 +1,24 @@
 #!/usr/bin/env python3
 # -- coding: utf-8 --
 
-from PyPDF2 import PdfReader
 from creationFichier import CreatFich
 
-from extractionTitre import recuperationTitre
-from extractionNomFichier import extractionNomFichier
-from extractionAuteur import recuperationAuteurs
-from extractionAbstract import recuperationAbstract
-from extractionIntro import recuperationIntro
-from extractionCorps import recuperationCorps
-from extractionDiscussion import recuperationDiscussion
-from extractionBiblio import recuperationBiblio
-from creationFichier import CreatFich
-from extractionConclusion import recuperationConclusion
+from recuperationInfo import recupInfo
 
 def lecteurPDF(fichier):
     print("Conversion en XML du fichier [" + fichier + "] en cours ..." )
 
-    #Récupération du nom du document
-    NOM_FICHIER = extractionNomFichier(fichier)
-    
-    #Lecture du fichier pdf
-    try:
-        lecteur = PdfReader(fichier)
-    except:
-        print(fichier + " introuvable")
-        return 1
-    
-    
-    #Récupération des informations du fichier
-    INFO = lecteur.metadata
-    TITRE = recuperationTitre(lecteur)
-    AUTEURS = recuperationAuteurs(lecteur) #["Pierre dupuis","Jack Dupont"] #DOIT RENVOYER UNE LISTE DE MAIL
-    ABSTRACT = recuperationAbstract(lecteur)
-    INTRODUCTION = recuperationIntro(lecteur)
-    CORPS = recuperationCorps(lecteur)
-    DISCUSSION = recuperationDiscussion(lecteur)
-    CONCLUSION = recuperationConclusion(lecteur)
-    BIBLIOGRAPHIE = recuperationBiblio(lecteur)
+    res = recupInfo(fichier)
 
-    #print(str(AUTEURS))
+    NOM_FICHIER     = res[0]
+    TITRE           = res[1]
+    AUTEURS         = res[2]
+    ABSTRACT        = res[3]
+    INTRODUCTION    = res[4]
+    CORPS           = res[5]
+    DISCUSSION      = res[6]
+    CONCLUSION      = res[7]
+    BIBLIOGRAPHIE   = res[8]
 
     rendu = [
             "<article>\n"+
@@ -49,13 +27,22 @@ def lecteurPDF(fichier):
             "\t<auteurs>\n"
             ]
     
-    
-    for i in range(len(AUTEURS)):
+    info_auteurs = AUTEURS.split("\n")
+    for i in range(len(info_auteurs)):
+        try:
+            nom  = info_auteurs[i].split(':')[0]
+            mail = info_auteurs[i].split(':')[1].split(',')[0]
+            affiliation = info_auteurs[i].split(':')[1].split(',')[1]
+        except:
+            nom = ""
+            mail = ""
+            affiliation = ""
+
         rendu.append(
                     "\t\t<auteur>\n"+
-                    "\t\t\t<name>"+AUTEURS[i][0]+"</name>\n"+
-                    "\t\t\t<mail>"+AUTEURS[i][1]+"</mail>\n"+
-                    "\t\t\t<affiliation>"+AUTEURS[i][2]+"</affiliation>\n"+
+                    "\t\t\t<name>"+nom+"</name>\n"+
+                    "\t\t\t<mail>"+mail+"</mail>\n"+
+                    "\t\t\t<affiliation>"+affiliation+"</affiliation>\n"+
                     "\t\t</auteur>\n"
                     )
 
