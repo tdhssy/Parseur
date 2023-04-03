@@ -35,7 +35,7 @@ def lecteurPDF(fichier):
     #Récupération des informations du fichier
     #INFO = lecteur.metadata
     TITRE = recuperationTitre(lecteur)
-    AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}" for auteur_mail in recuperationAuteurs(lecteur)])
+    AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(lecteur)])
     ABSTRACT = recuperationAbstract(lecteur)
     INTRODUCTION = recuparationIntro(lecteur)
     CORPS = recuperationCorps(lecteur)
