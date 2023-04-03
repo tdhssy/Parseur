@@ -4,7 +4,7 @@
 from PyPDF2 import PdfReader
 import re
 
-def recuparationIntro(lecteur: PdfReader)->str:
+def recuperationIntro(lecteur: PdfReader)->str:
     
     text = "".join([ lecteur.pages[i].extract_text() for i in range(len(lecteur.pages))])
     # Le texte que nous allons analyser
@@ -19,8 +19,10 @@ def recuparationIntro(lecteur: PdfReader)->str:
     if correspondance:
         resultat = correspondance.group(2)
         return resultat
+    """
     else:
         print(text)
         print("\n\nIntroduction : ", re.search(r"I\s*n\s*t\s*r\s*o\s*d\s*u\s*c\s*t\s*i\s*o\s*n\s*|I\s*N\s*T\s*R\s*O\s*D\s*U\s*C\s*T\s*I\s*O\s*N\s*", text))
         print("Fin Intro : ", re.search(r"\n\s*(II|2)\.", text))
+    """
     return ""
