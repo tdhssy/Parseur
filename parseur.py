@@ -55,7 +55,7 @@ if __name__ == '__main__':
     argc = len(sys.argv)
 
 
-    if argc < 2:
+    if argc < 2 or argc > 2:
         print("Usage: python3 " + sys.argv[0] + " -t|-x|-tx " )
         exit(1)
 
