@@ -78,7 +78,7 @@ if __name__ == '__main__':
     for j in range( len(L)):
         print(str(j+1) + ". " + L[j])
     
-    print("*. Tout les fichiers")
+    print("*. Tous les fichiers")
     saisie(L)
 
 

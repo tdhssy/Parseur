@@ -121,9 +121,10 @@ def recuperationAuteurs(pages,titre) -> str:
                 if finTrouve and debuTrouve:
                     break
             if index_debut != -1 and index_fin != -1:
-                if (index_fin-index_debut) > 10: #L'email se trouve en fin de page
+                if (index_fin-index_debut) > 7: #L'email se trouve en fin de page
                     affiliations.append("".join(lignes[index_debut:index_debut+1])) #On suppose que c'est la ligne après le nom
-                affiliations.append(" ".join((lignes[index_debut:index_fin])))
+                else:
+                    affiliations.append(" ".join((lignes[index_debut:index_fin])))
             else:
                 affiliations.append("Aucune affiliation trouvée.")
             

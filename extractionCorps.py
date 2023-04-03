@@ -3,7 +3,7 @@
 
 from PyPDF2 import PdfReader
 from extractionDiscussion import recupPara
-from extractionIntro import recuparationIntro
+from extractionIntro import recuperationIntro
 import re
 
 def recuperationCorps(pages) -> str:
@@ -16,8 +16,6 @@ def recuperationCorps(pages) -> str:
     res = res.replace("\\n","\n")
     
     #recherche de la fin de l'intro
-    index = res.find(recuparationIntro(pages)[-10:])
-
-
+    index = res.find(recuperationIntro(pages)[-10:])
 
     return res[index+10:]

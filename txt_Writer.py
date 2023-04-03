@@ -8,7 +8,7 @@ from creationFichier import CreatFich
 from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
-from extractionIntro import recuparationIntro
+from extractionIntro import recuperationIntro
 from extractionAbstract import recuperationAbstract
 from extractionCorps import recuperationCorps
 from extractionDiscussion import recuperationDiscussion
@@ -42,7 +42,7 @@ def lecteurPDF(fichier):
     TITRE = recuperationTitre(pages[0],lecteur.metadata)
     AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(texte,TITRE)])
     ABSTRACT = recuperationAbstract(texte)
-    INTRODUCTION = recuparationIntro(texte)
+    INTRODUCTION = recuperationIntro(texte)
     CORPS = recuperationCorps(texte)
     DISCUSSION = recuperationDiscussion(texte)
     CONCLUSION = recuperationConclusion(texte)

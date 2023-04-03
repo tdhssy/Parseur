@@ -8,6 +8,7 @@ from extractionTitre import recuperationTitre
 from extractionNomFichier import extractionNomFichier
 from extractionAuteur import recuperationAuteurs
 from extractionAbstract import recuperationAbstract
+from extractionIntro import recuperationIntro
 from extractionCorps import recuperationCorps
 from extractionDiscussion import recuperationDiscussion
 from extractionBiblio import recuperationBiblio
@@ -33,6 +34,7 @@ def lecteurPDF(fichier):
     TITRE = recuperationTitre(lecteur)
     AUTEURS = recuperationAuteurs(lecteur) #["Pierre dupuis","Jack Dupont"] #DOIT RENVOYER UNE LISTE DE MAIL
     ABSTRACT = recuperationAbstract(lecteur)
+    INTRODUCTION = recuperationIntro(lecteur)
     CORPS = recuperationCorps(lecteur)
     DISCUSSION = recuperationDiscussion(lecteur)
     CONCLUSION = recuperationConclusion(lecteur)
@@ -60,6 +62,7 @@ def lecteurPDF(fichier):
     rendu.append(
                 "\t</auteurs>\n"+
                 "\t<abstract>"+ ABSTRACT.replace("\n", "\\n")+"</abstract>\n"+
+                "\t<introduction>"+ INTRODUCTION.replace("\n", "\\n")+"</>\n"+
                 "\t<corps>"+ CORPS.replace("\n", "\\n")+"</corps>\n"+
                 "\t<discussion>"+ DISCUSSION.replace("\n", "\\n")+"</discussion>\n"+
                 "\t<conclusion>"+ CONCLUSION.replace("\n", "\\n")+"</conclusion>\n"+
