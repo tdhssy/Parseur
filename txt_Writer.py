@@ -15,7 +15,6 @@ from extractionDiscussion import recuperationDiscussion
 from extractionBiblio import recuperationBiblio
 from extractionConclusion import recuperationConclusion
 
-
 """
 Fonction permettant la lecture du document PDF
 et la récupération des informations de celui-ci.
@@ -30,7 +29,7 @@ def lecteurPDF(fichier):
     try:
         lecteur = PdfReader(fichier)
     except:
-        print(fichier + " introuvable")
+        print(fichier + "est introuvable")
         return 1
     
     #Récupération des informations du fichier
