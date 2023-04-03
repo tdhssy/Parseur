@@ -16,11 +16,9 @@ def capitalise(chaine):
     return " ".join(mots_capitalises)  # recombiner les mots en une chaîne avec un espace entre chaque mot
 
 
-def recuperationAuteurs(lecteur: PdfReader) -> str:
+def recuperationAuteurs(pages,titre) -> str:
 
-    page=lecteur.pages[0] #on prends la 1ère page
-    texte = page.extract_text()#.replace("\n","") #aligne tout le texte sur une ligne
-    titre = recuperationTitre(lecteur) #Récupération du titre
+    texte = pages[0]#.replace("\n","") #aligne tout le texte sur une ligne
     index_debut = texte.find(titre) #récupération de l'index du titre dans le texte
     index_debut+=len(titre) #Incrémentation de l'index pour allez à la fin du titre
     index_fin = texte.lower().find("abstract") #Récupération de l'index du début de l'abstract
@@ -123,7 +121,7 @@ def recuperationAuteurs(lecteur: PdfReader) -> str:
                 if finTrouve and debuTrouve:
                     break
             if index_debut != -1 and index_fin != -1:
-                if (index_fin-index_debut) > len(lignes)/2: #L'email se trouve en fin de page
+                if (index_fin-index_debut) > 10: #L'email se trouve en fin de page
                     affiliations.append("".join(lignes[index_debut:index_debut+1])) #On suppose que c'est la ligne après le nom
                 affiliations.append(" ".join((lignes[index_debut:index_fin])))
             else:

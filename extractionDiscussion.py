@@ -57,8 +57,8 @@ en utilisant une expression régulière
     -Out : représentation en str de la partie
            discussion du document si elle existe
 """
-def recuperationDiscussion(lecteur: PdfReader) -> str:
-    nb_pages = len(lecteur.pages)
+def recuperationDiscussion(pages) -> str:
+    nb_pages = len(pages)
     pre_occurence = nb_pages
 
     text=""
@@ -67,13 +67,13 @@ def recuperationDiscussion(lecteur: PdfReader) -> str:
         pre_occurence-=1
         disc = re.compile(r'[D]\s*iscussion|ISCUSSION')
 
-        if disc.search(lecteur.pages[pre_occurence].extract_text()) :
+        if disc.search(pages[pre_occurence]) :
             #print("Trouver page "+str(pre_occurence))
             break
 
     if(pre_occurence):
         while (pre_occurence<nb_pages):
-            text +=lecteur.pages[pre_occurence].extract_text()
+            text +=pages[pre_occurence]
             pre_occurence+=1
             
         

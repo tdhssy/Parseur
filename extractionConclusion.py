@@ -12,16 +12,12 @@ import re
 
 """
 
-def recuperationConclusion(lecteur: PdfReader) -> str:
-    pages=[]
-    for num_page in range(len(lecteur.pages)):
-        page=lecteur.pages[num_page]
-        pages.append(page)
+def recuperationConclusion(pages) -> str:
     try:
         conclusion= ''
         continuer = False # cas pour quand la conclusion prends + d'une page (pas fait)
         for page in pages:
-            text = page.extract_text()
+            text = page
             if (not continuer):
                 #TEST 1match = re.search(r'(?:Conclusion|Conclusions)([\s\S]*?)(?:Acknowledgements|References|Appendix|Follow-Up Work|\Z)', text)
                 #TEST 2match = re.search(r'(?:(?<=Conclusion[\s\S])([\s\S]*)|Conclusions[\s\S])([\s\S]*)(?=Acknowledgements|References|Appendix|Follow-Up Work|\Z)', text)

@@ -9,8 +9,7 @@ Fonction permettant la récupération du titre d'un fichier pdf
     -In : PdfReader
     -Out : titre du document en str
 """
-def recuperationTitre(lecteur: PdfReader) -> str:
-    info=lecteur.metadata
+def recuperationTitre(pages,info) -> str:
     titre = info.title
 
     #print("Meta info : "+str(info))
@@ -23,7 +22,7 @@ def recuperationTitre(lecteur: PdfReader) -> str:
 
     if(titre==None):
         
-        page=lecteur.pages[0] #on prends la 1ère page
+        page=pages #on prends la 1ère page
         titretmp_ligne = [] #on crée tableau vide
         titre= "" # on transforme titre de None a string
         
@@ -43,7 +42,7 @@ def recuperationTitre(lecteur: PdfReader) -> str:
 
     if (not titre[0].isupper()): #Cas ou la métadonné ne correspond pas a un titre
         
-        page=lecteur.pages[0]
+        page=pages
         tmptitre= page.extract_text(visitor_text=taille_entête)
         tmptitre= tmptitre.split("\n")[0]
         titre = re.findall(r'(?<=[a-z]{5})[A-Z].*$', tmptitre)[0]

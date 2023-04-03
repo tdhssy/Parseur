@@ -12,19 +12,19 @@ en utilisant une expression régulière
            bibliographie du document si elle existe
 """
 
-def recuperationBiblio(lecteur: PdfReader) -> str:
+def recuperationBiblio(pages) -> str:
     res = ""
-    nb_pages = len(lecteur.pages)
+    nb_pages = len(pages)
     trouver = False
     cpt = 0
 
     #On parcours tout le pdf jusqu'à trouver la partie Référence
     while (cpt < nb_pages) and (not trouver):
-        page = lecteur.pages[cpt]
+        page = pages[cpt]
 
         try:
             biblio = re.findall(r'(?i)[\n]reference[s]?[\s]*[\n][\s\S]*',
-                                ("\n" + page.extract_text()))[0].split('\n') #Ajout de \n au cas ou References est en début de page
+                                ("\n" + page))[0].split('\n') #Ajout de \n au cas ou References est en début de page
             biblio.pop(1)  #Pour enlever le mot clé "References"
             biblio.pop(-1) #Pour enlever le numéro de la page
         except:
@@ -39,8 +39,8 @@ def recuperationBiblio(lecteur: PdfReader) -> str:
     #Une fois la partie Référence trouver on ajoute toute la fin du pdf
     #car la partie Référence est la dernière partie d'un pdf.
     while cpt < nb_pages:
-        page = lecteur.pages[cpt]
-        for ligne in page.extract_text()[0].split('\n'):
+        page = pages[cpt]
+        for ligne in page.split('\n'):
             res += ligne + "\n"
         cpt += 1
     

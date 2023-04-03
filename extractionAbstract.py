@@ -11,10 +11,10 @@ en utilisant une expression régulière
     -Out : représentation en str de la partie
            abstarct du document si elle existe
 """
-def recuperationAbstract(lecteur: PdfReader) -> str:
-    page=lecteur.pages[0] #on prends la 1ère page
+def recuperationAbstract(pages) -> str:
+    page=pages[0] #on prends la 1ère page
     try:
-        abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', page.extract_text())[0][0]
+        abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', page)[0][0]
     except Exception as e:
         #print(e) 
         abstract = "Aucun Abstract."

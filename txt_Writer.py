@@ -34,14 +34,19 @@ def lecteurPDF(fichier):
     
     #Récupération des informations du fichier
     #INFO = lecteur.metadata
-    TITRE = recuperationTitre(lecteur)
-    AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(lecteur)])
-    ABSTRACT = recuperationAbstract(lecteur)
-    INTRODUCTION = recuparationIntro(lecteur)
-    CORPS = recuperationCorps(lecteur)
-    DISCUSSION = recuperationDiscussion(lecteur)
-    CONCLUSION = recuperationConclusion(lecteur)
-    BIBLIOGRAPHIE = recuperationBiblio(lecteur)
+    pages = lecteur.pages
+    texte=[]
+    for p in pages:
+        texte.append(p.extract_text())
+
+    TITRE = recuperationTitre(pages[0],lecteur.metadata)
+    AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(texte,TITRE)])
+    ABSTRACT = recuperationAbstract(texte)
+    INTRODUCTION = recuparationIntro(texte)
+    CORPS = recuperationCorps(texte)
+    DISCUSSION = recuperationDiscussion(texte)
+    CONCLUSION = recuperationConclusion(texte)
+    BIBLIOGRAPHIE = recuperationBiblio(texte)
 
     #Formatage des données 
     
