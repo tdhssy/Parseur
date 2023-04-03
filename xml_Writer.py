@@ -5,20 +5,19 @@ from creationFichier import CreatFich
 
 from recuperationInfo import recupInfo
 
-def lecteurPDF(fichier):
-    print("Conversion en XML du fichier [" + fichier + "] en cours ..." )
+def lecteurPDF(info):
 
-    res = recupInfo(fichier)
+    NOM_FICHIER     = info[0]
+    TITRE           = info[1]
+    AUTEURS         = info[2]
+    ABSTRACT        = info[3]
+    INTRODUCTION    = info[4]
+    CORPS           = info[5]
+    DISCUSSION      = info[6]
+    CONCLUSION      = info[7]
+    BIBLIOGRAPHIE   = info[8]
 
-    NOM_FICHIER     = res[0]
-    TITRE           = res[1]
-    AUTEURS         = res[2]
-    ABSTRACT        = res[3]
-    INTRODUCTION    = res[4]
-    CORPS           = res[5]
-    DISCUSSION      = res[6]
-    CONCLUSION      = res[7]
-    BIBLIOGRAPHIE   = res[8]
+    print("Conversion en XML du fichier [" + NOM_FICHIER + "] en cours ..." )
 
     rendu = [
             "<article>\n"+

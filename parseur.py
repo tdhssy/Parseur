@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from recuperationInfo import recupInfo
 from txt_Writer import lecteurPDF as txt_writer
 from xml_Writer import lecteurPDF as xml_writer
 import sys
@@ -16,15 +17,16 @@ arguments et lance l'analyse si ceux-ci sont valide.
 def convert(selectfic):
     option = sys.argv[1]
     #print("option :"+option)
+    info_text = recupInfo(chemin + selectfic)
     if option =="-t": 
-        txt_writer(chemin + selectfic) #VERSION TXT 
+        txt_writer(info_text) #VERSION TXT 
         #print("-t " + chemin +  selectfic)
     elif option =="-x":  
-        xml_writer(chemin + selectfic) #VERSION XML
+        xml_writer(info_text) #VERSION XML
         #print("-x " + selectfic)
     elif option =="-tx" or option == "-xt":  
-        xml_writer(chemin + selectfic) #VERSION XML
-        txt_writer(chemin + selectfic) #VERSION TXT
+        xml_writer(info_text) #VERSION XML
+        txt_writer(info_text) #VERSION TXT
         #print("-tx " + selectfic)
     else :
         print("\nUsage: python3 "+sys.argv[0]+" [type]\n")
@@ -35,16 +37,18 @@ def convert(selectfic):
 def saisie(L):
     inp = input("\nSaisir un chiffre dans la liste ou * : ")
     
-    if inp == "*":
-        for i in  L :
-            convert(i)
-    elif int(inp) >0 and int(inp)<len(L)+1 : 
-        selectfic = L[int(inp)-1]
-        convert(selectfic)
-    else:
+    try:
+        if inp == "*":
+            for i in  L :
+                convert(i)
+        elif int(inp) >0 and int(inp)<len(L)+1 : 
+            selectfic = L[int(inp)-1]
+            convert(selectfic)
+        else:
+            raise Exception
+    except:
         print("Erreur veuillez choisir parmis les propositions ")
         saisie(L)
-    
         
 
 if __name__ == '__main__':
