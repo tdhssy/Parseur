@@ -126,7 +126,7 @@ def recuperationAuteurs(pages,titre) -> str:
                 else:
                     affiliations.append(" ".join((lignes[index_debut:index_fin])))
             else:
-                affiliations.append("Aucune affiliation trouvée.")
+                affiliations.append("N/A")
             
 
     res = [[elem1, elem2, elem3] for elem1, elem2, elem3 in zip(nom_email, emails, affiliations)]

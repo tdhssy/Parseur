@@ -79,7 +79,7 @@ def recuperationDiscussion(pages) -> str:
         
         text = recupPara(text,"Discussion",["Appendix","Conclusions","Acknowledgments"])
     else :
-        text = "Aucune discussion trouvée."
+        text = "N/A"
 
     
      

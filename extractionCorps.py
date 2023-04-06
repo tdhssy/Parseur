@@ -9,7 +9,7 @@ import re
 def recuperationCorps(pages) -> str:
     text = "".join([ pages[i] for i in range(len(pages))])
     #print(repr(lecteur.pages[0].extract_text()))
-    res = "Aucun corps trouver"
+    res = "N/A"
     res = recupPara(text,"Introduction",["Discussion","Conclusion","Conclusions"])
 
     #Remet les saut à la ligne

@@ -26,4 +26,4 @@ def recuperationIntro(pages)->str:
         print("\n\nIntroduction : ", re.search(r"I\s*n\s*t\s*r\s*o\s*d\s*u\s*c\s*t\s*i\s*o\s*n\s*|I\s*N\s*T\s*R\s*O\s*D\s*U\s*C\s*T\s*I\s*O\s*N\s*", text))
         print("Fin Intro : ", re.search(r"\n\s*(II|2)\.", text))
     """
-    return ""
+    return "N/A"

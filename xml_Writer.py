@@ -32,18 +32,19 @@ def lecteurPDF(info):
             nom  = info_auteurs[i].split(':')[0]
             mail = info_auteurs[i].split(':')[1].split(',')[0]
             affiliation = info_auteurs[i].split(':')[1].split(',')[1]
+            rendu.append(
+                        "\t\t<auteur>\n"+
+                        "\t\t\t<name>"+nom+"</name>\n"+
+                        "\t\t\t<mail>"+mail+"</mail>\n"+
+                        "\t\t\t<affiliation>"+affiliation+"</affiliation>\n"+
+                        "\t\t</auteur>\n"
+                        )
         except:
-            nom = ""
-            mail = ""
-            affiliation = ""
-
-        rendu.append(
-                    "\t\t<auteur>\n"+
-                    "\t\t\t<name>"+nom+"</name>\n"+
-                    "\t\t\t<mail>"+mail+"</mail>\n"+
-                    "\t\t\t<affiliation>"+affiliation+"</affiliation>\n"+
-                    "\t\t</auteur>\n"
-                    )
+                rendu.append(
+                        "\t\t<auteur>\n"+
+                        "\t\t\tN/A"+
+                        "\t\t</auteur>\n"
+                        )
 
     rendu.append(
                 "\t</auteurs>\n"+

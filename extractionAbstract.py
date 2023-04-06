@@ -17,5 +17,5 @@ def recuperationAbstract(pages) -> str:
         abstract = re.findall(r'(?i)abstract([\s\S]*?)(?i)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', page)[0][0]
     except Exception as e:
         #print(e) 
-        abstract = "Aucun Abstract."
+        abstract = "N/A"
     return abstract

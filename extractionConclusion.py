@@ -60,7 +60,7 @@ def recuperationConclusion(pages) -> str:
             conclusion = "Pas de conclusion détectée.\n"
     except Exception as e:
         #print(e) 
-        conclusion = "Problème d'analyse\n"
+        conclusion = "N/A"
     return conclusion
 
 

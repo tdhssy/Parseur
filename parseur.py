@@ -53,16 +53,24 @@ def saisie(L):
 
 if __name__ == '__main__':
     argc = len(sys.argv)
+    argv = sys.argv
 
-
-    if argc < 2 or argc > 2:
-        print("Usage: python3 " + sys.argv[0] + " -t|-x|-tx " )
+    if argc != 3:
+        print("Usage: python3 " + argv[0] + " -t|-x|-tx|-xt <Repertoire>" )
         exit(1)
+
+    if (argv[1] != '-t' and argv[1] != '-x' and argv[1] != '-tx' and argv[1] != '-xt'):
+        print("Usage: python3 " + argv[0] + " -t|-x|-tx|-xt <Repertoire>" )
+        exit(2)
 
     L = []
     selectfic = ""
-    chemin = "./pdf_apprentissage/"
-    fich = os.listdir(chemin)
+    chemin = argv[2]
+    try:
+        fich = os.listdir(chemin)
+    except:
+        print(f'{argv[2]}' " introuvable.")
+        exit(3)
 
     for i in fich:
         #Verification du format du fichier
