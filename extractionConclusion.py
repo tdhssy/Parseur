@@ -57,7 +57,7 @@ def recuperationConclusion(pages) -> str:
                         #print("AHOUIOUI")
                         continuer=False
         if (conclusion==""):
-            conclusion = "Pas de conclusion détectée.\n"
+            conclusion = "N/A"
     except Exception as e:
         #print(e) 
         conclusion = "N/A"

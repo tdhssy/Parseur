@@ -55,17 +55,17 @@ if __name__ == '__main__':
     argc = len(sys.argv)
     argv = sys.argv
 
-    if argc != 3:
-        print("Usage: python3 " + argv[0] + " -t|-x|-tx|-xt <Repertoire>" )
+    if (argc != 2) :
+        print("Usage: python3 " + argv[0] + " -t|-x|-tx|-xt" )
+        exit(1)
+    if(argv[1] != '-t' and argv[1] != '-x' and argv[1] != '-tx' and argv[1] != '-xt') :
+        print("Usage: python3 " + argv[0] + " -t|-x|-tx|-xt" )
         exit(1)
 
-    if (argv[1] != '-t' and argv[1] != '-x' and argv[1] != '-tx' and argv[1] != '-xt'):
-        print("Usage: python3 " + argv[0] + " -t|-x|-tx|-xt <Repertoire>" )
-        exit(2)
 
     L = []
     selectfic = ""
-    chemin = argv[2]
+    chemin = "./pdf_apprentissage/"
     try:
         fich = os.listdir(chemin)
     except:

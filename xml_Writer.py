@@ -48,12 +48,12 @@ def lecteurPDF(info):
 
     rendu.append(
                 "\t</auteurs>\n"+
-                "\t<abstract>"+ ABSTRACT.replace("\n", "\\n")+"</abstract>\n"+
-                "\t<introduction>"+ INTRODUCTION.replace("\n", "\\n")+"</>\n"+
-                "\t<corps>"+ CORPS.replace("\n", "\\n")+"</corps>\n"+
-                "\t<discussion>"+ DISCUSSION.replace("\n", "\\n")+"</discussion>\n"+
-                "\t<conclusion>"+ CONCLUSION.replace("\n", "\\n")+"</conclusion>\n"+
-                "\t<biblio>"+ BIBLIOGRAPHIE.replace("\n", "\\n") + "</bilio>\n"+
+                "\t<abstract>"+ ABSTRACT.replace("\n", " ")+"</abstract>\n"+
+                "\t<introduction>"+ INTRODUCTION.replace("\n", " ")+"</introduction>\n"+
+                "\t<corps>"+ CORPS.replace("\n", " ")+"</corps>\n"+
+                "\t<discussion>"+ DISCUSSION.replace("\n", " ")+"</discussion>\n"+
+                "\t<conclusion>"+ CONCLUSION.replace("\n", "")+"</conclusion>\n"+
+                "\t<biblio>"+ BIBLIOGRAPHIE.replace("\n", " ") + "</biblio>\n"+
                 "</article>"
                 )
     
