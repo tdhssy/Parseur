@@ -29,37 +29,69 @@ def recuperationConclusion(pages) -> str:
                 #testv2 = re.search(r'(?:C ONCLUSIONS?\w?[.:;]?\s*(?!\s*$)*|Conclusions?\w?[.:;]?\s*(?!\s*$)*?)([\s\S]*?)(?:References)',verif_mot)
 
                 if match:
+                    if not test:
+                        #print("CheckVerif")
+                        continuer=True
                     #print("check")
                     retirer_txt_inutile=match.group(1)
                     retirer_txt_inutile=retirer_txt_inutile.split("\n")
-                    if not (retirer_txt_inutile[0][0] in Lettreenmaj): #verifie que c'est le début de la ligne
-                        retirer_txt_inutile.pop(0)
-    
-                    #print(retirer_txt_inutile[0])
-                    goodTxt="\n".join(retirer_txt_inutile)
 
-                    #print(goodTxt)
+                    #Cas où il y a des mots sur la ligne conclusion qui sont pris
+                    if not (retirer_txt_inutile[0][0] in Lettreenmaj and retirer_txt_inutile[0][1] not in Lettreenmaj): #verifie que c'est le début de la ligne
+                        retirer_txt_inutile.pop(0)
+                    #print("check 2")
+
+                    #print(retirer_txt_inutile)
+                    #Cas où il y a numéro de page ou quelquechose en trop à la fin du texte
+                    if (continuer):
+                        while (retirer_txt_inutile[-1][-1].isdigit()):
+                            retirer_txt_inutile.pop()
+                    else:
+                        while (retirer_txt_inutile[-1][-1]!="."):
+                            retirer_txt_inutile.pop()
+
+                    goodTxt="\n".join(retirer_txt_inutile)
+                    #print("check3")
+                    if ('' in goodTxt): #cas bizarre 1
+                        goodTxt=goodTxt.replace("","fi")
+                    if ('' in goodTxt): #cas bizarre 2
+                        goodTxt=goodTxt.replace("","ffi")
+                    if ('' in goodTxt): #cas bizarre 3
+                        goodTxt=goodTxt.replace("","ff")
+                    
                     conclusion+= goodTxt
-                    #print(test)
-                    if not test:
-                        #print("AHOUIOUI")
-                        continuer=True
-                    #print(conclusion)
+
             else : 
                 matchx = re.search(r'([\s\S]*?)(?:ACKNOWLEDGMENT|Acknowledgements|ACKNOWLEDGMENT|References|Appendix|Follow-Up Work|\Z)', text)
                 #print(matchx.group(1))
                 test = re.search(r'(?:Acknowledg(?:ements|ment)s?|REFERENCES|R EFERENCES|References|Appendix|ACKNOWLEDGMENT|Follow-Up Work)',verif_mot)
-                #print("#######")
                 if matchx:
-                    conclusion+="\n"+matchx.group(1)
-                    #continuer=False
+                    #print("checkCOntinue")
                     if test:
                         #print("AHOUIOUI")
                         continuer=False
+                    retirer_txt_inutile=matchx.group(1)
+                    retirer_txt_inutile=retirer_txt_inutile.split("\n")
+                    #print("ok")
+                    if (len(retirer_txt_inutile)>1 or retirer_txt_inutile[0]!=''):
+                        #print("checkOk1")
+                        #print(retirer_txt_inutile)
+                        while (not continuer and (retirer_txt_inutile[-1]=='' or retirer_txt_inutile[-1][-1]!=".")):
+                            #print("boucle boule")
+                            if(len(retirer_txt_inutile)==1):
+                                retirer_txt_inutile.pop()
+                                break
+                            retirer_txt_inutile.pop()
+                        #print("finalcheck")
+                        goodTxt="\n".join(retirer_txt_inutile)
+
+                        conclusion+="\n"+goodTxt
+                        
+                        
+                    #print("checkfull")
         if (conclusion==""):
             conclusion = "N/A"
     except Exception as e:
-        #print(e) 
         conclusion = "N/A"
     return conclusion
 
