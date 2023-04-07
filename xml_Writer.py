@@ -21,7 +21,7 @@ def lecteurPDF(info):
 
     rendu = [
             "<article>\n"+
-            "\t<preambule>" + NOM_FICHIER + "</preambule>\n" +
+            "\t<preamble>" + NOM_FICHIER + "</preamble>\n" +
             "\t<titre>" + TITRE +"</titre>\n" +
             "\t<auteurs>\n"
             ]
