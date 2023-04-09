@@ -30,8 +30,8 @@ def recupInfo(fichier):
         texte.append(p.extract_text().
                      replace("\v", "ff").
                      replace("\f", "fi").
-                     replace("\x0E", "•").
-                     replace("\x0F", "ffi").
+                     replace("\x0E", "ffi").
+                     replace("\x0F", "•").
                      replace("\x13", "é"))
 
     TITRE = recuperationTitre(pages[0],lecteur.metadata)
