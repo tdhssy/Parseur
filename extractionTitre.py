@@ -40,12 +40,15 @@ def recuperationTitre(pages,info) -> str:
             else:
                 titre += titretmp_ligne[i]
 
-    if (not titre[0].isupper()): #Cas ou la métadonné ne correspond pas a un titre
-        
-        page=pages
-        tmptitre= page.extract_text(visitor_text=taille_entête)
-        tmptitre= tmptitre.split("\n")[0]
-        titre = re.findall(r'(?<=[a-z]{5})[A-Z].*$', tmptitre)[0]
+    try:
+        if (not titre[0].isupper()): #Cas ou la métadonné ne correspond pas a un titre
+            
+            page=pages
+            tmptitre= page.extract_text(visitor_text=taille_entête)
+            tmptitre= tmptitre.split("\n")[0]
+            titre = re.findall(r'(?<=[a-z]{5})[A-Z].*$', tmptitre)[0]
+    except:
+        titre="N/A"
         
     
     return titre

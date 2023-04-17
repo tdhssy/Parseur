@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     L = []
     selectfic = ""
-    chemin = "./pdf_apprentissage/"
+    chemin = "./pdf_apprentissage/test/"
     try:
         fich = os.listdir(chemin)
     except:
