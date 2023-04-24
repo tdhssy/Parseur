@@ -48,14 +48,16 @@ def lecteurPDF(info):
 
     rendu.append(
                 "\t</auteurs>\n"+
-                "\t<abstract>"+ ABSTRACT.replace("\n", " ")+"</abstract>\n"+
-                "\t<introduction>"+ INTRODUCTION.replace("\n", " ")+"</introduction>\n"+
-                "\t<corps>"+ CORPS.replace("\n", " ")+"</corps>\n"+
-                "\t<discussion>"+ DISCUSSION.replace("\n", " ")+"</discussion>\n"+
-                "\t<conclusion>"+ CONCLUSION.replace("\n", "")+"</conclusion>\n"+
-                "\t<biblio>"+ BIBLIOGRAPHIE.replace("\n", " ") + "</biblio>\n"+
+                "\t<abstract>\n"+ ABSTRACT.replace("\n", " ")+"\n\t</abstract>\n"+
+                "\t<introduction>\n"+ INTRODUCTION.replace("\n", " ")+"\n\t</introduction>\n"+
+                "\t<corps>\n"+ CORPS.replace("\n", " ")+"\n\t</corps>\n"+
+                "\t<discussion>\n"+ DISCUSSION.replace("\n", " ")+"\n\t</discussion>\n"+
+                "\t<conclusion>\n"+ CONCLUSION.replace("\n", "")+"\n\t</conclusion>\n"+
+                "\t<biblio>\n"+ BIBLIOGRAPHIE.replace("\n", " ") + "\n\t</biblio>\n"+
                 "</article>"
                 )
     
+    
+    rendu[3].replace("\nN/A\n\t", "N/A")
     CreatFich("".join(rendu), "./resultat/" + NOM_FICHIER[:-3] + "xml")
     print("----------------------------------------------------------------\n") 
