@@ -22,33 +22,50 @@ def recuperationConclusion(pages) -> str:
             
             verif_mot=page
             if (not continuer):
-                match = re.search(r'(?:C ONCLUSIONS?\w?[.:;]?\s*(?!\s*$)*|Conclusions?\w?[.:;]?\s*(?!\s*$)*?)([\s\S]*?)(?:\s*(?:Acknowledgements|Acknowledgments.|Acknowledgment|References|REFERENCES|Appendix|Follow-Up Work|\Z)|\s*\Acknowledgments\b[.:;]?)\s*', text)
+                match = re.search(r'(?:C ONCLUSIONS?\w?[.:;]?\s*(?!\s*$)*|Conclusion|CONCLUSION|Conclusions?\w?[.:;]?\s*(?!\s*$)*?)([\s\S]*?)(?:\s*(?:Acknowledgements|Acknowledgments.|Acknowledgment|References|REFERENCES|Appendix|Follow-Up Work|\Z)|\s*\Acknowledgments\b[.:;]?)\s*', text)
                 #match experience= re.search(r'(?:C ONCLUSIONS[\s\S]*|Conclusion(?s)[\s\S]*?)([\s\S]*?)(?:\s*(?:Acknowledgements|Acknowledgments.|Acknowledgment|References|REFERENCES|Appendix|Follow-Up Work|\Z)|\s*\Acknowledgments\b[.:;]?)',text)
                 # Expression régulière actuelle qui marche le mieux
-                test = re.search(r'(?:Acknowledg(?:ements|ment)s?|REFERENCES|R EFERENCES|References|Appendix|ACKNOWLEDGMENT|Follow-Up Work)',verif_mot)
+                test = re.search(r'(?:Acknowledg(?:ements|ment)s?|REFERENCES|R EFERENCES|References|REFERENCES|Appendix|ACKNOWLEDGMENT|Follow-Up Work)',verif_mot)
                 #testv2 = re.search(r'(?:C ONCLUSIONS?\w?[.:;]?\s*(?!\s*$)*|Conclusions?\w?[.:;]?\s*(?!\s*$)*?)([\s\S]*?)(?:References)',verif_mot)
-
                 if match:
                     if not test:
                         #print("CheckVerif")
                         continuer=True
-                    #print("check")
+                    #print("checkMatch")
                     retirer_txt_inutile=match.group(1)
-                    retirer_txt_inutile=retirer_txt_inutile.split("\n")
 
+                    retirer_txt_inutile=retirer_txt_inutile.split("\n")
+                    #print(retirer_txt_inutile)
                     #Cas où il y a des mots sur la ligne conclusion qui sont pris
+                    if (retirer_txt_inutile[0]==''):
+                        retirer_txt_inutile.pop(0)
                     if not (retirer_txt_inutile[0][0] in Lettreenmaj and retirer_txt_inutile[0][1] not in Lettreenmaj): #verifie que c'est le début de la ligne
                         retirer_txt_inutile.pop(0)
                     #print("check 2")
-
-                    #print(retirer_txt_inutile)
+                    #print(len(retirer_txt_inutile))
+                    #print(retirer_txt_inutile[-1],"continue =",continuer)
+                    
                     #Cas où il y a numéro de page ou quelquechose en trop à la fin du texte
                     if (continuer):
                         while (retirer_txt_inutile[-1][-1].isdigit()):
-                            retirer_txt_inutile.pop()
+                            #print("checkwhile")
+                            if (len(retirer_txt_inutile[-1])==1):
+                                    retirer_txt_inutile.pop()
+                            else:
+                                retirer_txt_inutile[-1]=retirer_txt_inutile[-1][:-1]
+                            #print("FinCheckWhile")
+                
+                            #print(retirer_txt_inutile[-1])
                     else:
                         while (retirer_txt_inutile[-1][-1]!="."):
-                            retirer_txt_inutile.pop()
+                            #print("checkwhile2")
+                            if (len(retirer_txt_inutile[-1])==1):
+                                    retirer_txt_inutile.pop()
+                            else:
+                                retirer_txt_inutile[-1]=retirer_txt_inutile[-1][:-1]
+
+                            #print("FinCheckWhile2")
+
 
                     goodTxt="\n".join(retirer_txt_inutile)
                     #print("check3")
@@ -62,13 +79,13 @@ def recuperationConclusion(pages) -> str:
                     conclusion+= goodTxt
 
             else : 
-                matchx = re.search(r'([\s\S]*?)(?:ACKNOWLEDGMENT|Acknowledgements|ACKNOWLEDGMENT|References|Appendix|Follow-Up Work|\Z)', text)
+                matchx = re.search(r'([\s\S]*?)(?:ACKNOWLEDGMENT|Acknowledgements|ACKNOWLEDGMENT|REFERENCES|References|Appendix|Follow-Up Work|\Z)', text)
                 #print(matchx.group(1))
                 test = re.search(r'(?:Acknowledg(?:ements|ment)s?|REFERENCES|R EFERENCES|References|Appendix|ACKNOWLEDGMENT|Follow-Up Work)',verif_mot)
                 if matchx:
-                    #print("checkCOntinue")
+                    #print("checkContinue")
                     if test:
-                        #print("AHOUIOUI")
+                        #print("CheckStpĈontinue")
                         continuer=False
                     retirer_txt_inutile=matchx.group(1)
                     retirer_txt_inutile=retirer_txt_inutile.split("\n")
