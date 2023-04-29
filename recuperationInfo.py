@@ -14,13 +14,12 @@ from extractionTitre import recuperationTitre
 def recupInfo(fichier):
     #Récupération du nom du document
     NOM_FICHIER = extractionNomFichier(fichier)
-    
     #Lecture du fichier pdf
     try:
         lecteur = PdfReader(fichier)
     except:
         print(fichier + "est introuvable")
-        return 1
+        return []
     
     #Récupération des informations du fichier
     #INFO = lecteur.metadata
@@ -42,5 +41,6 @@ def recupInfo(fichier):
     DISCUSSION = recuperationDiscussion(texte)
     CONCLUSION = recuperationConclusion(texte)
     BIBLIOGRAPHIE = recuperationBiblio(texte)
+
 
     return [NOM_FICHIER, TITRE, AUTEURS, ABSTRACT, INTRODUCTION, CORPS, DISCUSSION, CONCLUSION, BIBLIOGRAPHIE]

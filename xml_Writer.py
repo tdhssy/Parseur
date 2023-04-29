@@ -17,6 +17,7 @@ def lecteurPDF(info):
     CONCLUSION      = info[7]
     BIBLIOGRAPHIE   = info[8]
 
+
     print("Conversion en XML du fichier [" + NOM_FICHIER + "] en cours ..." )
 
     rendu = [
@@ -27,6 +28,7 @@ def lecteurPDF(info):
             ]
     
     info_auteurs = AUTEURS.split("\n")
+
     for i in range(len(info_auteurs)):
         try:
             nom  = info_auteurs[i].split(':')[0]
@@ -45,7 +47,6 @@ def lecteurPDF(info):
                         "\t\t\tN/A"+
                         "\t\t</auteur>\n"
                         )
-
     rendu.append(
                 "\t</auteurs>\n"+
                 "\t<abstract>\n"+ ABSTRACT.replace("\n", " ")+"\n\t</abstract>\n"+
@@ -57,7 +58,6 @@ def lecteurPDF(info):
                 "</article>"
                 )
     
-    
-    rendu[3].replace("\nN/A\n\t", "N/A")
+    #rendu[3].replace("\nN/A\n\t", "N/A")
     CreatFich("".join(rendu), "./resultat/" + NOM_FICHIER[:-3] + "xml")
     print("----------------------------------------------------------------\n") 
