@@ -35,7 +35,7 @@ def recupInfo(fichier):
 
     TITRE = recuperationTitre(pages[0],lecteur.metadata)
     AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(texte,TITRE)])
-    ABSTRACT = recuperationAbstract(texte)
+    ABSTRACT = recuperationAbstract(texte[0])
     INTRODUCTION = recuperationIntro(texte)
     CORPS = recuperationCorps(texte)
     DISCUSSION = recuperationDiscussion(texte)

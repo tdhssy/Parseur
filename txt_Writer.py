@@ -12,6 +12,8 @@ et la récupération des informations de celui-ci.
 """
 def lecteurPDF(info):
 
+    print("Conversion en TXT du fichier [" + NOM_FICHIER + "] en cours ..." )
+
     NOM_FICHIER     = info[0]
     TITRE           = info[1]
     AUTEURS         = info[2]
@@ -21,8 +23,6 @@ def lecteurPDF(info):
     DISCUSSION      = info[6]
     CONCLUSION      = info[7]
     BIBLIOGRAPHIE   = info[8]
-
-    print("Conversion en TXT du fichier [" + NOM_FICHIER + "] en cours ..." )
 
     #Formatage des données 
     

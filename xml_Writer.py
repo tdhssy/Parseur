@@ -8,6 +8,9 @@ from recuperationInfo import recupInfo
 def lecteurPDF(info):
 
     NOM_FICHIER     = info[0]
+
+    print("Conversion en XML du fichier [" + NOM_FICHIER + "] en cours ..." )
+
     TITRE           = info[1]
     AUTEURS         = info[2]
     ABSTRACT        = info[3]
@@ -16,9 +19,6 @@ def lecteurPDF(info):
     DISCUSSION      = info[6]
     CONCLUSION      = info[7]
     BIBLIOGRAPHIE   = info[8]
-
-
-    print("Conversion en XML du fichier [" + NOM_FICHIER + "] en cours ..." )
 
     rendu = [
             "<article>\n"+
@@ -36,7 +36,7 @@ def lecteurPDF(info):
             affiliation = info_auteurs[i].split(':')[1].split(',')[1]
             rendu.append(
                         "\t\t<auteur>\n"+
-                        "\t\t\t<nom>"+nom+"</nom>\n"+
+                        "\t\t\t<name>"+nom+"</name>\n"+
                         "\t\t\t<mail>"+mail+"</mail>\n"+
                         "\t\t\t<affiliation>"+affiliation+"</affiliation>\n"+
                         "\t\t</auteur>\n"
@@ -51,7 +51,7 @@ def lecteurPDF(info):
                 "\t</auteurs>\n"+
                 "\t<abstract>\n"+ ABSTRACT.replace("\n", " ")+"\n\t</abstract>\n"+
                 "\t<introduction>\n"+ INTRODUCTION.replace("\n", " ")+"\n\t</introduction>\n"+
-                "\t<corps>\n"+ CORPS.replace("\n", " ")+"\n\t</corps>\n"+
+                "\t<body>\n"+ CORPS.replace("\n", " ")+"\n\t</body>\n"+
                 "\t<discussion>\n"+ DISCUSSION.replace("\n", " ")+"\n\t</discussion>\n"+
                 "\t<conclusion>\n"+ CONCLUSION.replace("\n", "")+"\n\t</conclusion>\n"+
                 "\t<biblio>\n"+ BIBLIOGRAPHIE.replace("\n", " ") + "\n\t</biblio>\n"+
