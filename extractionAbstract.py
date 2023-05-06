@@ -11,11 +11,21 @@ en utilisant une expression régulière
     -Out : représentation en str de la partie
            abstarct du document si elle existe
 """
-def recuperationAbstract(page) -> str:
+def recuperationAbstract(pages : list) -> str:
     abstract = ""
+    #print(re.findall(r'(?i)abstract([\s\S]*?)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', pages[1])[0][0])
     try:
-        abstract = re.findall(r'(?i)abstract([\s\S]*?)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', page)[0][0]
+        abstract = re.findall(r'(?i)abstract([\s\S]*?)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', pages[0])
+
+        #Si rien n'a été trouvé, c'est que le document commence peut être sur la page 2
+        if abstract == []:
+            abstract = re.findall(r'(?i)abstract([\s\S]*?)((1[.]?|I[.]?)[\s]*)?i[\s]?ntroduction', pages[1])
     except Exception as e:
-        #print(e) 
-        abstract = "N/A"
-    return abstract
+        print(e) 
+        return "N/A"
+    
+    #Si rien n'a été trouvé
+    if abstract == []:
+        return "N/A"
+    
+    return abstract[0][0]

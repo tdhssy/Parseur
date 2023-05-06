@@ -14,6 +14,9 @@ from extractionTitre import recuperationTitre
 def recupInfo(fichier):
     #Récupération du nom du document
     NOM_FICHIER = extractionNomFichier(fichier)
+
+    print("Conversion en XML du fichier [" + NOM_FICHIER + "] en cours ..." )
+
     #Lecture du fichier pdf
     try:
         lecteur = PdfReader(fichier)
@@ -32,10 +35,10 @@ def recupInfo(fichier):
                      replace("\x0E", "ffi").
                      replace("\x0F", "•").
                      replace("\x13", "é"))
-
+        
     TITRE = recuperationTitre(pages[0],lecteur.metadata)
     AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(texte,TITRE)])
-    ABSTRACT = recuperationAbstract(texte[0])
+    ABSTRACT = recuperationAbstract(texte)
     INTRODUCTION = recuperationIntro(texte)
     CORPS = recuperationCorps(texte)
     DISCUSSION = recuperationDiscussion(texte)

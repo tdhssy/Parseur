@@ -8,9 +8,6 @@ from recuperationInfo import recupInfo
 def lecteurPDF(info):
 
     NOM_FICHIER     = info[0]
-
-    print("Conversion en XML du fichier [" + NOM_FICHIER + "] en cours ..." )
-
     TITRE           = info[1]
     AUTEURS         = info[2]
     ABSTRACT        = info[3]
