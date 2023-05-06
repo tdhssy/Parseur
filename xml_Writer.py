@@ -57,7 +57,7 @@ def lecteurPDF(info):
                 "\t<biblio>\n"+ BIBLIOGRAPHIE.replace("\n", " ") + "\n\t</biblio>\n"+
                 "</article>"
                 )
-    
-    #rendu[3].replace("\nN/A\n\t", "N/A")
+
+    rendu[-1].replace("\nN/A\n\t", "N/A")
     CreatFich("".join(rendu), "./resultat/" + NOM_FICHIER[:-3] + "xml")
     print("----------------------------------------------------------------\n") 
