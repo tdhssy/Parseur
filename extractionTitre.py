@@ -22,31 +22,32 @@ def recuperationTitre(pages,info) -> str:
 
     if(titre==None):
         
-        page=pages #on prends la 1ère page
-        titretmp_ligne = [] #on crée tableau vide
-        titre= "" # on transforme titre de None a string
-        
+        for index in range(2):
+            page=pages[index] #on prends la 1ère page
+            titretmp_ligne = [] #on crée tableau vide
+            titre= "" # on transforme titre de None a string
+            
 
-        page.extract_text(visitor_text=taille_entête) # appelle de la définition taille_entete
-        titretmp_ligne= "".join(titretmp_ligne).split("\n") # on regroupe toutes les lignes et on les sépare en fonction des retour à la ligne
-        
-        
-        #    pour toutes les lignes on ajoute à la variable titre la ligne i avec un espace à la fin.
-        #    Si dernière ligne à rajouter, pas d'espace à la fin
-        
-        for i in range(len(titretmp_ligne)): 
-            if (i!=len(titretmp_ligne)-1) :
-                titre += titretmp_ligne[i]+" "
-            else:
-                titre += titretmp_ligne[i]
+            page.extract_text(visitor_text=taille_entête) # appelle de la définition taille_entete
+            titretmp_ligne= "".join(titretmp_ligne).split("\n") # on regroupe toutes les lignes et on les sépare en fonction des retour à la ligne
+            
+            
+            #    pour toutes les lignes on ajoute à la variable titre la ligne i avec un espace à la fin.
+            #    Si dernière ligne à rajouter, pas d'espace à la fin
+            
+            for i in range(len(titretmp_ligne)): 
+                if (i!=len(titretmp_ligne)-1) :
+                    titre += titretmp_ligne[i]+" "
+                else:
+                    titre += titretmp_ligne[i]
 
     try:
         if (not titre[0].isupper()): #Cas ou la métadonné ne correspond pas a un titre
-            
-            page=pages
-            tmptitre= page.extract_text(visitor_text=taille_entête)
-            tmptitre= tmptitre.split("\n")[0]
-            titre = re.findall(r'(?<=[a-z]{5})[A-Z].*$', tmptitre)[0]
+            for index in range(2):
+                page=pages[index]
+                tmptitre= page.extract_text(visitor_text=taille_entête)
+                tmptitre= tmptitre.split("\n")[0]
+                titre = re.findall(r'(?<=[a-z]{5})[A-Z].*$', tmptitre)[0]
     except:
         titre="N/A"
         

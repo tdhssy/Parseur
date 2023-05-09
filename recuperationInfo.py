@@ -35,13 +35,14 @@ def recupInfo(fichier):
                      replace("\x0E", "ffi").
                      replace("\x0F", "•").
                      replace("\x13", "é").
+                     replace("", ",").
                      replace("&", "&amp;").
                      replace("<", "&lt;").
                      replace(">", "&gt;").
                      replace("`", "&apos;").
                      replace('"', "&quot;"))
         
-    TITRE = recuperationTitre(pages[0],lecteur.metadata)
+    TITRE = recuperationTitre(pages,lecteur.metadata)
     AUTEURS = "\n".join([f"{auteur_mail[0]} : {auteur_mail[1]}, {auteur_mail[2]}" for auteur_mail in recuperationAuteurs(texte,TITRE)])
     ABSTRACT = recuperationAbstract(texte)
     INTRODUCTION = recuperationIntro(texte)

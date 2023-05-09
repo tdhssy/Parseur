@@ -69,12 +69,6 @@ def recuperationConclusion(pages) -> str:
 
                     goodTxt="\n".join(retirer_txt_inutile)
                     #print("check3")
-                    if ('' in goodTxt): #cas bizarre 1
-                        goodTxt=goodTxt.replace("","fi")
-                    if ('' in goodTxt): #cas bizarre 2
-                        goodTxt=goodTxt.replace("","ffi")
-                    if ('' in goodTxt): #cas bizarre 3
-                        goodTxt=goodTxt.replace("","ff")
                     
                     conclusion+= goodTxt
 
