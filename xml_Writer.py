@@ -49,7 +49,7 @@ def lecteurPDF(info):
                 "\t</auteurs>\n"+
                 "\t<abstract>\n"+ ABSTRACT.replace("\n", " ")+"\n\t</abstract>\n"+
                 "\t<introduction>\n"+ INTRODUCTION.replace("\n", " ")+"\n\t</introduction>\n"+
-                "\t<body><string>\n"+ CORPS.replace("\n", " ")+"\n\t</string></body>\n"+
+                "\t<body>\n"+ CORPS.replace("\n", " ")+"\n\t</body>\n"+
                 "\t<discussion>\n"+ DISCUSSION.replace("\n", " ")+"\n\t</discussion>\n"+
                 "\t<conclusion>\n"+ CONCLUSION.replace("\n", "")+"\n\t</conclusion>\n"+
                 "\t<biblio>\n"+ BIBLIOGRAPHIE.replace("\n", " ") + "\n\t</biblio>\n"+
