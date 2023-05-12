@@ -16,6 +16,7 @@ def lecteurPDF(info):
     DISCUSSION      = info[6]
     CONCLUSION      = info[7]
     BIBLIOGRAPHIE   = info[8]
+    
 
     rendu = [
             "<?xml version='1.0' encoding='UTF-8'?>\n" +
