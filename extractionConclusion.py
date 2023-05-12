@@ -104,6 +104,7 @@ def recuperationConclusion(pages) -> str:
             conclusion = "N/A"
     except Exception as e:
         conclusion = "N/A"
+    conclusion = re.sub(r'(?<=[^\ ])Table[\s\S]*/',"",conclusion) 
     return conclusion
 
 
