@@ -16,7 +16,7 @@ def recuperationTitre(pages,info) -> str:
 
     def taille_entête(text,cm,tm,fontDict,fontSize): #on s'interesse à la taille de la police fontsize
         y=tm[5] #tm pour text matrice
-        if fontSize > 14 and y>550: #si supérieur à taille basique alors c'est le titre et si assez haut dans le document
+        if fontSize >14 and y>550: #si supérieur à taille basique alors c'est le titre et si assez haut dans le document
             titretmp_ligne.append(text) # on ajoute dans la variable temporaire la ligne en question
         #print(titretmp_ligne)
 
@@ -30,8 +30,10 @@ def recuperationTitre(pages,info) -> str:
 
             page.extract_text(visitor_text=taille_entête) # appelle de la définition taille_entete
             titretmp_ligne= "".join(titretmp_ligne).split("\n") # on regroupe toutes les lignes et on les sépare en fonction des retour à la ligne
+
             
-            
+            #titre = re.findall(r'^.*$', page)
+            #print(titre+"-----------OKOKOK")
             #    pour toutes les lignes on ajoute à la variable titre la ligne i avec un espace à la fin.
             #    Si dernière ligne à rajouter, pas d'espace à la fin
             
@@ -40,7 +42,10 @@ def recuperationTitre(pages,info) -> str:
                     titre += titretmp_ligne[i]+" "
                 else:
                     titre += titretmp_ligne[i]
-
+            if (titre!=""):
+                return titre
+            
+    
     try:
         if (not titre[0].isupper()): #Cas ou la métadonné ne correspond pas a un titre
             for index in range(2):
@@ -50,6 +55,5 @@ def recuperationTitre(pages,info) -> str:
                 titre = re.findall(r'(?<=[a-z]{5})[A-Z].*$', tmptitre)[0]
     except:
         titre="N/A"
-        
     
     return titre
