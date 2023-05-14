@@ -35,8 +35,10 @@ def recuperationAuteurs(pages,titre) -> str:
     email_regex = r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"  #r"!\s.*@[a-z\.\-]+"
     
     liste_ligne = texte.split("\n")
-    
 
+    emails = re.findall(email_regex, texte)
+    
+    """
     #print("liste : "+str(liste_ligne))
     for mail in liste_ligne:
         index_select+=1
@@ -51,21 +53,21 @@ def recuperationAuteurs(pages,titre) -> str:
             mail=re.sub(r"[3-9]rd|1st|2nd","", mail) #Traitement des numérotation en fin de page
 
             #Pose soucis pour le cas de mikheev
-            """
-            if "," in mail : #Check si on a une liste de préfix
-                postfix = re.findall(r"@[\w\.\-]+",mail)[0]
-                prefix = re.sub(r"@[\w\.\-]+|[\(\)\{\}\[\]]","",mail) #Supression de l'entourage
-                mail = re.sub(r",",postfix+" ",prefix)
-                print("postfix :"+postfix)
-                print("prefix :"+str(prefix))
-            """
+            #"""
+            #if "," in mail : #Check si on a une liste de préfix
+            #    postfix = re.findall(r"@[\w\.\-]+",mail)[0]
+            #    prefix = re.sub(r"@[\w\.\-]+|[\(\)\{\}\[\]]","",mail) #Supression de l'entourage
+            #    mail = re.sub(r",",postfix+" ",prefix)
+            #    print("postfix :"+postfix)
+            #    print("prefix :"+str(prefix))
+            #"""
             #print("Mail : "+mail)
 
             #Application des expressions régulières
-            email = re.findall(email_regex, mail)
+    """        email = re.findall(email_regex, mail)
             if len(email)>0:
                 emails.append(str(email[0]))
-    
+    """
     
     # Expression régulière pour extraire les adresses e-mail
     email_regex2 = r'\(([^)\n]*)\)[\n]*(@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)'
@@ -81,6 +83,10 @@ def recuperationAuteurs(pages,titre) -> str:
    
     
     #---------------------- Partie pour retrouvé les noms --------------------#
+
+    #nom_test = re.findall(r'(\s*(^\w)*?([A-Z][a-z]+))+', pages[0])
+    #print(nom_test)
+    #print(pages[0])
 
     nom_email = []
     if len(emails)>0:
