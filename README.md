@@ -55,7 +55,7 @@ Pour lancer une conversion vers un format XML
 
 ## Auteurs
 
-- [@LuffyVanquish](https://github.com/LuffyVanquish)
+- [@tdhssy](https://github.com/tdhssy)
 
 - [@vErifet](https://github.com/vErifet)
 
